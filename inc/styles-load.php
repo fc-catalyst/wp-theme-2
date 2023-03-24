@@ -1,20 +1,21 @@
 <?php
 
-// ++add namespace
+namespace FCT\StylesLoad;
 
 // add styles
-add_action( 'wp_enqueue_scripts', function() { // ++try footer?
+add_action( 'wp_enqueue_scripts', function() { // using wp_footer ruined the pagespeed score somehow
 
     $enqueue_dir = get_template_directory() . '/assets/styles/';
     $enqueue_url = get_template_directory_uri() . '/assets/styles/';
-    $enqueue_files = array_merge( ['fonts'], fct_get_style_files_() );
+    $enqueue_files = array_merge( ['fonts'], css_files_get() );
+    $min = FCT_DEV ? '' : '.min';
 
     foreach ( $enqueue_files as $v ) {
-        if ( !is_file( $enqueue_dir . $v . '.css' ) ) { continue; }
+        if ( !is_file( $enqueue_dir . $v . $min . '.css' ) ) { continue; }
 
         wp_enqueue_style(
             FCT['prefix'] . $v,
-            $enqueue_url . $v . '.css',
+            $enqueue_url . $v . $min . '.css',
             [ FCT['prefix'] . 'style' ], // after the main one
             FCT_VER,
             'all'
@@ -24,32 +25,33 @@ add_action( 'wp_enqueue_scripts', function() { // ++try footer?
     
     // main css & js
     wp_enqueue_style( FCT['prefix'] . 'style',
-    	get_template_directory_uri() . '/style.css',
+    	get_template_directory_uri() . '/style'.$min.'.css',
     	[],
         FCT_VER,
         'all'
     );
     wp_enqueue_script( FCT['prefix'] . 'common',
-		get_template_directory_uri() . '/assets/common.js',
+		get_template_directory_uri() . '/assets/common'.$min.'.js',
 		[ 'jquery' ],
 		FCT_VER,
 		1
 	);
 
+    // ++ defer loading these on option
 });
 
 // add first screen styles
 add_action( 'wp_enqueue_scripts', function() {
 
     $include_dir = get_template_directory() . '/assets/styles/first-screen/';
-    $include_files = array_merge( ['style'], fct_get_style_files_() );
+    $include_files = array_merge( ['style'], css_files_get() );
 
     foreach ( $include_files as $v ) {
         $path = $include_dir . $v . '.css';
         if ( !is_file( $path ) ) { continue; }
 
         $name = FCT['prefix'].'-first-'.$v;
-        $content = FCT_DEV ? file_get_contents( $path ) : fct_css_minify( file_get_contents( $path ) );
+        $content = FCT_DEV ? file_get_contents( $path ) : css_minify( file_get_contents( $path ) );
 
         wp_register_style( $name, false );
         wp_enqueue_style( $name );
@@ -71,7 +73,7 @@ add_action( 'wp_footer', function() {
 
 
 // make a list of .css files names, according to the url: post-type, archive, front
-function fct_get_style_files_() {
+function css_files_get() {
     static $files = null;
     if ( $files !== null ) { return $files; }
 
@@ -117,13 +119,12 @@ function fct_get_style_files_() {
     return $files;
 }
 
-function fct_css_minify($text) {
+function css_minify($text) {
     $text = preg_replace( '/\/\*(?:.*?)*\*\//', '', $text ); // remove comments
     $text = preg_replace( '/\s+/', ' ', $text ); // one-line & only single speces
     $text = preg_replace( '/ ?([\{\};:\>\~\+]) ?/', '$1', $text ); // remove spaces
     $text = preg_replace( '/\+(\d)/', ' + $1', $text ); // restore spaces in functions
     $text = preg_replace( '/(?:[^\}]*)\{\}/', '', $text ); // remove empty properties
     $text = str_replace( [';}', '( ', ' )'], ['}', '(', ')'], $text ); // remove last ; and spaces
-    // ++can also remove 0 from 0.5
     return trim( $text );
 }

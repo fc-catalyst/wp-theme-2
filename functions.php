@@ -191,9 +191,7 @@ function fct_meta($name = '', $before = '', $after = '', $expect_array = false) 
 
 
 // print the loadings script the highest
-add_action( 'wp_head', 'fcLoadScriptVariable', 0 );
-add_action( 'admin_enqueue_scripts', 'fcLoadScriptVariable', 0 );
-function fcLoadScriptVariable() {
+$fcLoadScriptVariable = function () {
 	$name = 'fcLoadScriptVariable';
 	$settings = (object) [
 		'ver' => FCT_VER,
@@ -206,4 +204,7 @@ function fcLoadScriptVariable() {
 	wp_register_script( $name, '' );
 	wp_enqueue_script( $name );
 	wp_add_inline_script( $name, $content );
-}
+};
+add_action( 'wp_head', $fcLoadScriptVariable, 0 );
+add_action( 'admin_enqueue_scripts', $fcLoadScriptVariable, 0 );
+unset( $fcLoadScriptVariable );
