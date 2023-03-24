@@ -7,32 +7,32 @@ add_action( 'wp_enqueue_scripts', function() { // ++try footer?
 
     $enqueue_dir = get_template_directory() . '/assets/styles/';
     $enqueue_url = get_template_directory_uri() . '/assets/styles/';
-    $enqueue_files = array_merge( ['fonts'], fct1_get_style_files_() );
+    $enqueue_files = array_merge( ['fonts'], fct_get_style_files_() );
 
     foreach ( $enqueue_files as $v ) {
         if ( !is_file( $enqueue_dir . $v . '.css' ) ) { continue; }
 
         wp_enqueue_style(
-            FCT1S['prefix'] . $v,
+            FCT['prefix'] . $v,
             $enqueue_url . $v . '.css',
-            [ FCT1S['prefix'] . 'style' ], // after the main one
-            FCT1S_VER,
+            [ FCT['prefix'] . 'style' ], // after the main one
+            FCT_VER,
             'all'
         );
 
     }
     
     // main css & js
-    wp_enqueue_style( FCT1S['prefix'] . 'style',
+    wp_enqueue_style( FCT['prefix'] . 'style',
     	get_template_directory_uri() . '/style.css',
     	[],
-        FCT1S_VER,
+        FCT_VER,
         'all'
     );
-    wp_enqueue_script( FCT1S['prefix'] . 'common',
+    wp_enqueue_script( FCT['prefix'] . 'common',
 		get_template_directory_uri() . '/assets/common.js',
 		[ 'jquery' ],
-		FCT1S_VER,
+		FCT_VER,
 		1
 	);
 
@@ -42,21 +42,21 @@ add_action( 'wp_enqueue_scripts', function() { // ++try footer?
 add_action( 'wp_enqueue_scripts', function() {
 
     $include_dir = get_template_directory() . '/assets/styles/first-screen/';
-    $include_files = array_merge( ['style'], fct1_get_style_files_() );
+    $include_files = array_merge( ['style'], fct_get_style_files_() );
 
     foreach ( $include_files as $v ) {
         $path = $include_dir . $v . '.css';
         if ( !is_file( $path ) ) { continue; }
 
-        $name = FCT1S['prefix'].'-first-'.$v;
-        $content = FCT1S['dev'] ? file_get_contents( $path ) : fct1_css_minify( file_get_contents( $path ) );
+        $name = FCT['prefix'].'-first-'.$v;
+        $content = FCT_DEV ? file_get_contents( $path ) : fct_css_minify( file_get_contents( $path ) );
 
         wp_register_style( $name, false );
         wp_enqueue_style( $name );
         wp_add_inline_style( $name, $content );
     }
 
-    echo FCT1S['fonts_external'] ?? '';
+    echo FCT['fonts_external'] ?? '';
 
 }, 0 );
 
@@ -71,7 +71,7 @@ add_action( 'wp_footer', function() {
 
 
 // make a list of .css files names, according to the url: post-type, archive, front
-function fct1_get_style_files_() {
+function fct_get_style_files_() {
     static $files = null;
     if ( $files !== null ) { return $files; }
 
@@ -117,7 +117,7 @@ function fct1_get_style_files_() {
     return $files;
 }
 
-function fct1_css_minify($text) {
+function fct_css_minify($text) {
     $text = preg_replace( '/\/\*(?:.*?)*\*\//', '', $text ); // remove comments
     $text = preg_replace( '/\s+/', ' ', $text ); // one-line & only single speces
     $text = preg_replace( '/ ?([\{\};:\>\~\+]) ?/', '$1', $text ); // remove spaces

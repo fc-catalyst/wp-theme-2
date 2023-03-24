@@ -1,7 +1,7 @@
 <pre><?php
 
 /*
-removeThumbs(); removes thumbnail, generated with fct1_image_src
+removeThumbs(); removes thumbnail, generated with fct_image_src
 1. prints all thumbnails on dry run
 2. deletes all thumbnails with ?unlink query
 */

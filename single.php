@@ -57,7 +57,7 @@ if ( have_posts() ) :
 
 <div class="entry-content">
     <div style="height:60px" aria-hidden="true" class="wp-block-spacer"></div>
-    <h2 align="center"><?php _e( 'Topics you might be interested in', 'fct1' ) ?></h2>
+    <h2 align="center"><?php _e( 'Topics you might be interested in', 'fct' ) ?></h2>
     <div style="height:30px" aria-hidden="true" class="wp-block-spacer"></div>
     <?php get_template_part( 'template-parts/post', 'moreposts' ) ?>
 </div>

@@ -11,10 +11,10 @@
 
 	<ul class="skip-links">
 		<li>
-            <a href="#main-content" class="screen-reader-shortcut"><?php _e( 'Skip to main content', 'fct1' ) ?></a>
+            <a href="#main-content" class="screen-reader-shortcut"><?php _e( 'Skip to main content', 'fct' ) ?></a>
         </li>
 		<li>
-            <a href="#footer" class="screen-reader-shortcut"><?php _e( 'Skip to footer', 'fct1' ) ?></a>
+            <a href="#footer" class="screen-reader-shortcut"><?php _e( 'Skip to footer', 'fct' ) ?></a>
         </li>
 	</ul>
 

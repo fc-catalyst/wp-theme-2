@@ -8,13 +8,13 @@ $cat = $cat
 $post_type = get_post_type_object( get_post_type() );
 
 $featured_image = in_array( $post_type->name, ['docrot', 'clinic'] )
-    ? fct1_image( 'entity/' . get_the_ID() . '/' . (
-        fct1_meta( 'entity-photo', '', '', true )[0]
-        ?: fct1_meta( 'entity-background', '', '', true )[0]
-        ?: fct1_meta( 'entity-avatar', '', '', true )[0]
+    ? fct_image( 'entity/' . get_the_ID() . '/' . (
+        fct_meta( 'entity-photo', '', '', true )[0]
+        ?: fct_meta( 'entity-background', '', '', true )[0]
+        ?: fct_meta( 'entity-avatar', '', '', true )[0]
         ?: null
     ))
-    : fct1_image( get_post_thumbnail_id() ?: null, [500,500], ['center','top'], get_the_title() );
+    : fct_image( get_post_thumbnail_id() ?: null, [500,500], ['center','top'], get_the_title() );
 
 $type = $post_type ? $post_type->labels->singular_name : '';
 

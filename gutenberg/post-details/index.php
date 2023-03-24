@@ -25,7 +25,7 @@ add_action( 'init', function() use ( $block_name ) {
     </span>
     <?php echo $print_cats[0] ? ' | <span class="entry-categories">'.implode(', ',$print_cats).'</span>' : '' ?>
     <div class="entry-author">
-        <?php printf( __( 'by %s', 'fct1' ), get_the_author_meta( 'display_name', $post->post_author ) ) ?>
+        <?php printf( __( 'by %s', 'fct' ), get_the_author_meta( 'display_name', $post->post_author ) ) ?>
     </div>
 </div>
         <?php
@@ -35,16 +35,16 @@ add_action( 'init', function() use ( $block_name ) {
         return $content;
     };
 
-    register_block_type( 'fct1-gutenberg/' . $block_name, [
-        'editor_script' => 'fct1-' . $block_name . '-block',
+    register_block_type( 'fct-gutenberg/' . $block_name, [
+        'editor_script' => 'fct-' . $block_name . '-block',
         'render_callback' => $print_block
     ] );
 
     wp_register_script(
-        'fct1-' . $block_name . '-block',
+        'fct-' . $block_name . '-block',
         get_template_directory_uri() . '/gutenberg/' . $block_name . '/block.js',
         ['wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components'],
-        FCT1S_VER
+        FCT_VER
     );
 
 });

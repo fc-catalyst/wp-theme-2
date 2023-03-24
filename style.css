@@ -1,11 +1,11 @@
 /*
-Theme Name:     Firmcatslyst Theme 1
-Theme URI:      https://github.com/VVolkov833/wp-fctheme-1
-Description:    A custom theme sith split CSS and async scripts loading
+Theme Name:     Firmcatslyst Theme 2
+Theme URI:      https://github.com/VVolkov833/wp-theme-2
+Description:    A custom theme with the split CSS and async scripts loading
 Author:         Firmcatalyst, Vadim Volkov
 Author URI:     https://firmcatalyst.com
 Version:        2.0.1
-Text Domain:    fct1
+Text Domain:    fct
 Domain Path:    /languages
 Requires at least: 5.0
 Requires PHP:   7.4.0
@@ -178,18 +178,18 @@ body.admin-bar header.site-header {
 }
 
 /* hide the next block to open onclick */
-.fct1-open-next:not( .active ) + * {
+.fct-open-next:not( .active ) + * {
     max-height:0;
     margin-top:0;
     margin-bottom:0;
     padding-top:0;
     padding-bottom:0;
 }
-.fct1-open-next + * {
+.fct-open-next + * {
     overflow:hidden;
     transition:all 0.7s ease;
 }
-.fct1-open-next.active + * {
+.fct-open-next.active + * {
     max-height:1800px;
 }
 

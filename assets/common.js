@@ -92,17 +92,17 @@
         }
         
         /* toggle element after this one */
-        $( '.fct1-open-next' ).click( function(e) {
+        $( '.fct-open-next' ).click( function(e) {
             e.preventDefault();
             $( this ).toggleClass( 'active' );
         });
 
         /* add map by class | moved to borlabs */
 /*
-        const $gmap_holder = $( '.fct1-gmap-view' );
+        const $gmap_holder = $( '.fct-gmap-view' );
         if ( $gmap_holder.length ) {
             fcLoadScriptVariable(
-                '/wp-content/themes/fct1/assets/smarts/fcOnVisibleDo.js',
+                '/wp-content/themes/fct/assets/smarts/fcOnVisibleDo.js',
                 'fcOnVisibleDo', function() {
 
                 fcOnVisibleDo( $gmap_holder, function() {
@@ -111,7 +111,7 @@
                         'google'
                     );
                     fcLoadScriptVariable(
-                        '/wp-content/themes/fct1/assets/smarts/gmap-view.js',
+                        '/wp-content/themes/fct/assets/smarts/gmap-view.js',
                         'fcAddGmapView',
                         function() { fcAddGmapView( $gmap_holder, true ) },
                         ['google']
@@ -122,14 +122,14 @@
         }
 //*/
         /* add video by class */
-        const $video_holder = $( '.fct1-video[data-source=direct]' ); // only direct videos, as youtube is in borlabs
+        const $video_holder = $( '.fct-video[data-source=direct]' ); // only direct videos, as youtube is in borlabs
         if ( $video_holder.length ) {
             fcLoadScriptVariable(
-                '/wp-content/themes/fct1/assets/smarts/fcOnVisibleDo.js',
+                '/wp-content/themes/fct/assets/smarts/fcOnVisibleDo.js',
                 'fcOnVisibleDo', function() {
                     fcOnVisibleDo( $video_holder, function(self) {
                         fcLoadScriptVariable(
-                            '/wp-content/themes/fct1/assets/smarts/video.js',
+                            '/wp-content/themes/fct/assets/smarts/video.js',
                             'fcAddVideo',
                             function() { fcAddVideo( self ) }
                         );

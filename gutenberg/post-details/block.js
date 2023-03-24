@@ -2,8 +2,8 @@
 	var el = element.createElement;
     var useBlockProps = blockEditor.useBlockProps;
 
-	blocks.registerBlockType( 'fct1-gutenberg/post-details', {
-		title: 'FCT1 Post Details',
+	blocks.registerBlockType( 'fct-gutenberg/post-details', {
+		title: 'FCT Post Details',
         icon: 'block-default',
 		category: 'widgets',
 		edit: function( props ) {

@@ -1,7 +1,7 @@
 <?php
 		
-$hab_prev_page = get_previous_posts_link( __( 'Previous Page', 'fct1' ) );
-$hab_next_page = get_next_posts_link( __( 'Next Page', 'fct1' ) );
+$hab_prev_page = get_previous_posts_link( __( 'Previous Page', 'fct' ) );
+$hab_next_page = get_next_posts_link( __( 'Next Page', 'fct' ) );
 if ( !$hab_prev_page && !$hab_next_page ) {
     return;
 }

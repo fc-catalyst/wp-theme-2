@@ -184,12 +184,12 @@ article h2 > a:hover::before {
 }
 
 /* gurenberg hero */
-.fct1-hero {
+.fct-hero {
     min-height:40vh;
     position:relative;
 }
 
-.fct1-hero::after {
+.fct-hero::after {
     content:'';
     position:absolute;
     top:0;
@@ -205,17 +205,17 @@ article h2 > a:hover::before {
     -webkit-filter:blur(0.2rem);
 }
 
-.fct1-hero > *:first-child {
+.fct-hero > *:first-child {
     padding-top:var(--header-height-init);
     padding-bottom:var(--header-height-init);
     position:relative;
 }
 
-.blog .fct1-hero h1,
-.archive .fct1-hero h1 small {
+.blog .fct-hero h1,
+.archive .fct-hero h1 small {
     text-transform:uppercase;
 }
 
-.fct1-hero p {
+.fct-hero p {
     font-weight:300;
 }

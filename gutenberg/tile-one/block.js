@@ -4,8 +4,8 @@
     var MediaUpload = wp.blockEditor.MediaUpload;
     var TextControl = wp.components.TextControl;
 
-	wp.blocks.registerBlockType( 'fct1-gutenberg/tile-one', {
-		title: 'FCT1 Tile One',
+	wp.blocks.registerBlockType( 'fct-gutenberg/tile-one', {
+		title: 'FCT Tile One',
         icon: 'columns',
 		category: 'widgets',
 
@@ -82,37 +82,37 @@
                                 colors: [ // ++find a way to use the default pallet ++use classes from slug!! ++toggle
                                     {
                                         'name'  : 'Dark 1',
-                                        'slug'  : 'fct1-dark-1',
+                                        'slug'  : 'fct-dark-1',
                                         'color' : '#23667b'
                                     },
                                     {
                                         'name'  : 'Dark 2',
-                                        'slug'  : 'fct1-dark-2',
+                                        'slug'  : 'fct-dark-2',
                                         'color' : '#277888'
                                     },
                                     {
                                         'name'  : 'Dark 3',
-                                        'slug'  : 'fct1-dark-3',
+                                        'slug'  : 'fct-dark-3',
                                         'color' : '#58acbc'
                                     },
                                     {
                                         'name'  : 'Dark 4',
-                                        'slug'  : 'fct1-dark-4',
+                                        'slug'  : 'fct-dark-4',
                                         'color' : '#0087a0'
                                     },
                                     {
                                         'name'  : 'Dark 5',
-                                        'slug'  : 'fct1-dark-5',
+                                        'slug'  : 'fct-dark-5',
                                         'color' : '#dfc082'
                                     },
                                     {
                                         'name'  : 'Light 1',
-                                        'slug'  : 'fct1-light-1',
+                                        'slug'  : 'fct-light-1',
                                         'color' : '#87c8d3'
                                     },
                                     {
                                         'name'  : 'Warning 1',
-                                        'slug'  : 'fct1-warning-1',
+                                        'slug'  : 'fct-warning-1',
                                         'color' : '#fda7a7'
                                     },
                                     {
@@ -127,22 +127,22 @@
                                     },
                                     {
                                         'name'  : 'Grey 1',
-                                        'slug'  : 'fct1-grey-1',
+                                        'slug'  : 'fct-grey-1',
                                         'color' : '#22262c'
                                     },
                                     {
                                         'name'  : 'Grey 2',
-                                        'slug'  : 'fct1-grey-2',
+                                        'slug'  : 'fct-grey-2',
                                         'color' : '#2f3339'
                                     },
                                     {
                                         'name'  : 'Grey 3',
-                                        'slug'  : 'fct1-grey-3',
+                                        'slug'  : 'fct-grey-3',
                                         'color' : '#2c3538'
                                     },
                                     {
                                         'name'  : 'Grey 4',
-                                        'slug'  : 'fct1-grey-4',
+                                        'slug'  : 'fct-grey-4',
                                         'color' : '#d3d7da'
                                     }
                                 ],

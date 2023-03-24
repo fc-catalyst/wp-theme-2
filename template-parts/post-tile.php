@@ -10,7 +10,7 @@ $cat = $cat
     <header class="entry-header">
         <?php echo $cat ?>
         <div class="entry-photo">
-            <?php fct1_image_print( get_post_thumbnail_id(), [500,500], ['center','top'], get_the_title() ) ?>
+            <?php fct_image_print( get_post_thumbnail_id(), [500,500], ['center','top'], get_the_title() ) ?>
         </div>
         <h2 class="entry-title" itemprop="headline">
             <a class="entry-title-link" href="<?php the_permalink() ?>"><?php the_title() ?></a>
@@ -23,7 +23,7 @@ $cat = $cat
         <div class="entry-excerpt">
             <?php the_excerpt() ?>
         </div>
-        <a href="<?php the_permalink() ?>" class="entry-read"><?php _e( 'Read more', 'fct1' ) ?></a>
+        <a href="<?php the_permalink() ?>" class="entry-read"><?php _e( 'Read more', 'fct' ) ?></a>
     </div>
 </article>
 <?php

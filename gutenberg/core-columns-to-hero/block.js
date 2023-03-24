@@ -5,7 +5,7 @@
     // add new settings variable
     wp.hooks.addFilter(
         'blocks.registerBlockType',
-        'fct1-gutenberg/turn-to-hero-variable',
+        'fct-gutenberg/turn-to-hero-variable',
         function (settings, name) {
 
             if ( typeof settings.attributes === 'undefined' || !~effected_blocks.indexOf( name ) ) { return settings }
@@ -24,7 +24,7 @@
     var el = wp.element.createElement;
     wp.hooks.addFilter(
         'editor.BlockEdit',
-        'fct1-gutenberg/turn-to-hero-control',
+        'fct-gutenberg/turn-to-hero-control',
         wp.compose.createHigherOrderComponent( function ( BlockEdit ) {
             return function ( props ) {
                 return el(
@@ -52,13 +52,13 @@
     // add class name to the output block on save
     wp.hooks.addFilter(
         'blocks.getSaveContent.extraProps',
-        'fct1-gutenberg/turn-to-hero-save',
+        'fct-gutenberg/turn-to-hero-save',
         function (extraProps, blockType, attributes) {
 
             if ( !~effected_blocks.indexOf( blockType.name ) ) { return extraProps }
             if ( typeof attributes.turnToHero === 'undefined' || !attributes.turnToHero ) { return extraProps }
 
-            extraProps.className = extraProps.className + ' fct1-hero';
+            extraProps.className = extraProps.className + ' fct-hero';
             return extraProps;
         }
     );

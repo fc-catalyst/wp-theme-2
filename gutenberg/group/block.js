@@ -3,8 +3,8 @@
 	var el = wp.element.createElement;
 	var InnerBlocks = wp.blockEditor.InnerBlocks;
 
-	wp.blocks.registerBlockType( 'fct1-gutenberg/group', {
-		title: 'FCT1 Group',
+	wp.blocks.registerBlockType( 'fct-gutenberg/group', {
+		title: 'FCT Group',
         icon: 'columns',
 		category: 'widgets',
 
@@ -20,11 +20,11 @@
 				{ 'data-rows': initial },
 				el( InnerBlocks, {
                     allowedBlocks: [
-                        'fct1-gutenberg/tile-one'
+                        'fct-gutenberg/tile-one'
                     ],
                     template: [
-                        [ 'fct1-gutenberg/tile-one', {} ],
-                        [ 'fct1-gutenberg/tile-one', {} ]
+                        [ 'fct-gutenberg/tile-one', {} ],
+                        [ 'fct-gutenberg/tile-one', {} ]
                     ],
                     templateLock: false
                 }),
