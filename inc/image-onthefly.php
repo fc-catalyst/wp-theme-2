@@ -1,21 +1,23 @@
 <?php
 
-function fct_image_print( $img_id_src, $size = '', $crop = false, $alt = '', $itemprop = '' ) {
-    $img = fct_image_src( $img_id_src, $size, $crop );
+namespace FCT\Img;
+
+function show( $img_id_src, $size = '', $crop = false, $alt = '', $itemprop = '' ) {
+    $img = src( $img_id_src, $size, $crop );
     if ( !$img ) { return; }
     
     ?><img src="<?php echo $img[0] ?>" width="<?php echo $img[1] ?>" height="<?php echo $img[2] ?>" alt="<?php echo $alt ?>" loading="lazy" <?php echo $itemprop ? 'itemprop="'.$itemprop.'" ' : '' ?>/><?php
 }
 
-function fct_image( $img_id_src, $size = '', $crop = false, $alt = '', $itemprop = '' ) {
+function get( $img_id_src, $size = '', $crop = false, $alt = '', $itemprop = '' ) {
     ob_start();
-    fct_image_print( $img_id_src, $size, $crop, $alt, $itemprop );
+    show( $img_id_src, $size, $crop, $alt, $itemprop );
     $content = ob_get_contents();
     ob_end_clean();
     return $content;
 }
 
-function fct_image_src( $img_id_src, $size = '', $crop = false ) { // src starts from after ..uploads/
+function src( $img_id_src, $size = '', $crop = false ) { // src starts from after ..uploads/
 
     if ( is_numeric( $img_id_src ) ) {
         $img_id_src = explode( '/wp-content/uploads/', wp_get_attachment_image_src( $img_id_src, 'full' )[0] )[1];

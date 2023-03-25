@@ -1,7 +1,9 @@
 <?php
 
-// run through text and fix the links number & attributes
-function fct_a_clear_all($text, $limit = -1, $force = [], $allowed_atts = [] ) { // ++rebuild with DOMDocument?
+namespace FCT\Text;
+
+// run through text and fix the links number & attributes // ++refactor for better use!!!
+function html_limit_links($text, $limit = -1, $force = [], $allowed_atts = [] ) { // ++rebuild with DOMDocument?
 
     $limit = is_numeric( $limit ) ? intval( $limit ) : -1; // refers to external links
 
@@ -91,7 +93,7 @@ function fct_a_clear_all($text, $limit = -1, $force = [], $allowed_atts = [] ) {
     return $result;
 }
 
-function fct_html_words_limit($html, $limit) {
+function html_limit_words($html, $limit) {
 
     $count = -1;
     $offset = 0;
@@ -103,7 +105,7 @@ function fct_html_words_limit($html, $limit) {
 
             $offset = strpos( $html, $text[1], $offset );
 
-            $count_local = fct_count_words( $text[1] );
+            $count_local = words_count( $text[1] );
             $offset_local = 0;
 
             if ( $count_local > 0 && $count + $count_local > $limit ) { // track the offset inside local range
@@ -126,10 +128,10 @@ function fct_html_words_limit($html, $limit) {
 
     if ( $count !== $limit ) { return $html; }
 
-    return fct_html_fix( trim( substr( $html, 0, $offset ) ) . '&hellip;' );
+    return html_fix( trim( substr( $html, 0, $offset ) ) . '&hellip;' );
 }
 
-function fct_html_to_text($a) {
+function html_to_text($a) {
     $a = preg_replace( '/</', ' <', $a ); // possible gaps to spaces
     $a = preg_replace( '/<(head|script|style|template)[^>]*>(?:.*?)<\/\1>/si', ' ', $a ); // remove the hidden tags
     $a = strip_tags( $a );
@@ -138,7 +140,7 @@ function fct_html_to_text($a) {
     return $a;
 }
 
-function fct_html_fix($html) {
+function html_fix($html) {
     $dom = new DOMDocument();
     $dom->loadHTML( mb_convert_encoding( $html, 'HTML-ENTITIES', 'UTF-8' ) );
     $return = '';
@@ -148,7 +150,7 @@ function fct_html_fix($html) {
     return $return;
 }
 
-function fct_count_words($text) {
+function words_count($html_or_text) {
     //return str_word_count( $text ); // it just fails counting properly and stabelly
-    return substr_count( fct_html_to_text( $text ), ' ' ) + 1; // counting spaces
+    return substr_count( html_to_text( $html_or_text ), ' ' ) + 1; // counting spaces
 }

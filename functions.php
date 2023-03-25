@@ -5,7 +5,7 @@ define( 'FCT_DEV', true ); // developer mode
 require __DIR__ . ( is_file(__DIR__ . '/settings.php') ? '/settings.php' : '/settings-sample.php' );
 require __DIR__ . '/inc/styles-load.php';
 require __DIR__ . '/inc/image-onthefly.php';
-require __DIR__ . '/inc/text-filtering.php';
+//require __DIR__ . '/inc/text-filtering.php'; // ++move to the plugin
 require __DIR__ . '/inc/shortcodes.php';
 require __DIR__ . '/inc/comments.php';
 require __DIR__ . '/inc/crutches.php';
