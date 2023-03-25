@@ -1,6 +1,6 @@
 <?php
 
-namespace FCT\StylesLoad;
+namespace FCT\Styles;
 
 // add styles
 add_action( 'wp_enqueue_scripts', function() { // using wp_footer ruined the pagespeed score somehow
@@ -14,9 +14,9 @@ add_action( 'wp_enqueue_scripts', function() { // using wp_footer ruined the pag
         if ( !is_file( $enqueue_dir . $v . $min . '.css' ) ) { continue; }
 
         wp_enqueue_style(
-            FCT['prefix'] . $v,
+            FCT_SET['pref'] . $v,
             $enqueue_url . $v . $min . '.css',
-            [ FCT['prefix'] . 'style' ], // after the main one
+            [ FCT_SET['pref'] . 'style' ], // after the main one
             FCT_VER,
             'all'
         );
@@ -24,20 +24,30 @@ add_action( 'wp_enqueue_scripts', function() { // using wp_footer ruined the pag
     }
     
     // main css & js
-    wp_enqueue_style( FCT['prefix'] . 'style',
+    wp_enqueue_style( FCT_SET['pref'] . 'style',
     	get_template_directory_uri() . '/style'.$min.'.css',
     	[],
         FCT_VER,
         'all'
     );
-    wp_enqueue_script( FCT['prefix'] . 'common',
+    wp_enqueue_script( FCT_SET['pref'] . 'common',
 		get_template_directory_uri() . '/assets/common'.$min.'.js',
 		[ 'jquery' ],
 		FCT_VER,
 		1
 	);
 
-    // ++ defer loading these on option
+    // defer loading
+    if ( ( FCT_SET['defer_styles_theme'] ?? false ) === true ) {
+        $defer_list = array_reduce( array_merge( $enqueue_files, ['style'] ), function( $result, $item ) {
+            $result[] = FCT_SET['pref'].$item;
+            return $result;
+        }, [] );
+        defer( $defer_list );
+    }
+    if ( !empty( FCT_SET['defer_styles'] ?? [] ) ) {
+        defer( FCT_SET['defer_styles'] );
+    }
 });
 
 // add first screen styles
@@ -50,7 +60,7 @@ add_action( 'wp_enqueue_scripts', function() {
         $path = $include_dir . $v . '.css';
         if ( !is_file( $path ) ) { continue; }
 
-        $name = FCT['prefix'].'-first-'.$v;
+        $name = FCT_SET['pref'].'-first-'.$v;
         $content = FCT_DEV ? file_get_contents( $path ) : css_minify( file_get_contents( $path ) );
 
         wp_register_style( $name, false );
@@ -58,18 +68,9 @@ add_action( 'wp_enqueue_scripts', function() {
         wp_add_inline_style( $name, $content );
     }
 
-    echo FCT['fonts_external'] ?? '';
+    echo FCT_SET['fonts_external'] ?? '';
 
 }, 0 );
-
-
-// moving the Gutenberg away from the first screen ++do the same with jquery and other, as all loads async-ly
-add_action( 'wp_enqueue_scripts', function() {
-    wp_dequeue_style( 'wp-block-library' );
-});
-add_action( 'wp_footer', function() {
-    wp_enqueue_style( 'wp-block-library' );
-});
 
 
 // make a list of .css files names, according to the url: post-type, archive, front
@@ -127,4 +128,26 @@ function css_minify($text) {
     $text = preg_replace( '/(?:[^\}]*)\{\}/', '', $text ); // remove empty properties
     $text = str_replace( [';}', '( ', ' )'], ['}', '(', ')'], $text ); // remove last ; and spaces
     return trim( $text );
+}
+
+function defer($name, $priority = 10) {
+    static $store = [];
+
+    $name = array_diff( (array) $name, $store );
+    $store = array_merge( $store, $name );
+
+    add_filter( 'style_loader_tag', function ($tag, $handle) use ($name) {
+        if ( is_string( $name ) && $handle !== $name || is_array( $name ) && !in_array( $handle, $name ) ) { return $tag; }
+        return
+            str_replace( [ 'rel="stylesheet"', "rel='stylesheet'" ], [
+                'rel="preload" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"',
+                "rel='preload' as='style' onload='this.onload=null;this.rel=\"stylesheet\"'"
+            ], $tag ).
+            '<noscript>'.str_replace(
+                [ ' id="'.$handle.'-css"', " id='".$handle."-css'" ], // remove doubling id
+                [ '', '' ],
+                substr( $tag, 0, -1 )
+            ).'</noscript>' . "\n"
+        ;
+    }, $priority, 2 );
 }

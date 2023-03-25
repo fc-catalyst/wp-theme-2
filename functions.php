@@ -195,7 +195,7 @@ $fcLoadScriptVariable = function () {
 	$name = 'fcLoadScriptVariable';
 	$settings = (object) [
 		'ver' => FCT_VER,
-		'gmapKey' => FCT['gmap_api_key'] ?? '',
+		'gmapKey' => FCT_SET['gmap_api_key'] ?? '',
 	];
 
 	$content  = file_get_contents( __DIR__ . '/assets/fcLoadScriptVariable' . ( FCT_DEV ? '.js' : '.min.js' ) );
