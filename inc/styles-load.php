@@ -53,14 +53,18 @@ add_action( 'wp_enqueue_scripts', function() { // using wp_footer reduced the pa
 // add first screen styles
 add_action( 'wp_enqueue_scripts', function() {
 
+    $enqueue_inline = function ( $name, $content ) {
+        wp_register_style( $name, false );
+        wp_enqueue_style( $name );
+        wp_add_inline_style( $name, ( FCT_DEV ? $content : css_minify( $content ) ) );
+    };
+
+    // print theme settings
+    $enqueue_inline( FCT_SET['pref'].'variables', get_settings_variables() );
+    $enqueue_inline( FCT_SET['pref'].'gutenberg', get_settings_gutenberg() );
+
     // print external fonts
     echo FCT_SET['fonts_external'] ?? '';
-
-    // print pre-set font-sizes and colors
-    $name = 'gutenberg-settings';
-    wp_register_style( $name, false );
-    wp_enqueue_style( $name );
-    wp_add_inline_style( $name, get_gutenberg_settings() );
 
     // print the styles from first-screen
     $include_dir = get_template_directory() . '/assets/styles/first-screen/';
@@ -69,13 +73,7 @@ add_action( 'wp_enqueue_scripts', function() {
     foreach ( $include_files as $v ) {
         $path = $include_dir . $v . '.css';
         if ( !is_file( $path ) ) { continue; }
-
-        $name = FCT_SET['pref'].'-first-'.$v;
-        $content = FCT_DEV ? file_get_contents( $path ) : css_minify( file_get_contents( $path ) );
-
-        wp_register_style( $name, false );
-        wp_enqueue_style( $name );
-        wp_add_inline_style( $name, $content );
+        $enqueue_inline( FCT_SET['pref'].'first-'.$v, file_get_contents( $path ) );
     }
 
 }, 0 );
@@ -160,7 +158,7 @@ function defer($name, $priority = 10) {
     }, $priority, 2 );
 }
 
-function get_gutenberg_settings() {
+function get_settings_gutenberg() {
     $colors_to_css = function( $colors, $prefix = '' ) use ( &$colors_to_css ) {
         return array_reduce( array_keys( $colors ), function ( $result, $item ) use ( $colors_to_css, $colors, $prefix ) {
             $color = $colors[ $item ];
@@ -178,17 +176,6 @@ function get_gutenberg_settings() {
         }, [] );
     };
 
-    $colors_to_var = function( $colors ) {
-        return array_reduce( array_keys( $colors ), function ( $result, $item ) use ( $colors ) {
-            $color = $colors[ $item ];
-            if ( !is_string( $color ) ) { return $result; }
-            $result .= '
-            --fct-'.sanitize_html_class( $item ).': '.$color.'
-            ';
-            return $result;
-        }, '' );
-    };
-
     $fonts_to_css = function( $fonts ) {
         return array_reduce( $fonts, function ( $result, $item ) {
             $slug = _wp_to_kebab_case( str_replace( '.', 'dot', strval( $item ) ) );
@@ -200,9 +187,25 @@ function get_gutenberg_settings() {
         }, [] );
     };
 
-    $content  = ':root {' . "\n" . $colors_to_var( FCT_SET['colors'] ) . "\n" . '}';
     $content .= implode( '', $colors_to_css( FCT_SET['colors'] ) ); // keep the array so it can be modified similar to the gutenberg settings alike function
     $content .= implode( '', $fonts_to_css( FCT_SET['font_sizes'] ) );
 
-    return FCT_DEV ? $content : css_minify( $content );
+    return $content;
+}
+
+function get_settings_variables() {
+
+    $colors_to_var = function( $colors ) {
+        return array_reduce( array_keys( $colors ), function ( $result, $item ) use ( $colors ) {
+            $color = $colors[ $item ];
+            if ( !is_string( $color ) ) { return $result; }
+            $result .= '
+            --fct-'.sanitize_html_class( $item ).': '.$color.'
+            ';
+            return $result;
+        }, '' );
+    };
+
+    return ':root {' . "\n" . $colors_to_var( FCT_SET['colors'] ) . "\n" . '}';
+
 }
