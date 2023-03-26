@@ -6,7 +6,8 @@
 // ++TEST IF CAN get_option TO SET TO THE CONSTANT
 
 define( 'FCT_SET', [
-    'pref'         => 'fct-',
+    'var'            => 'fct',
+    'pref'           => 'fct-',
     'gmap_api_key'   => '',
     'fonts_external' => '',
     'colors' => [ // can not use 'text', 'background'
