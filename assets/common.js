@@ -34,9 +34,10 @@
             const l = document.body.classList,
                   s = window.scrollY,
                   c = 'scrolled', d = 'scrollingDown';
+
             if ( s < 40 ) { l.remove( c, d ); return }
-            l.add( c );
-            if ( s < 300 ) { l.remove( d ); return } //++can make less sensitive
+            l.add( c ); // can use IntersectionObserver to track that
+            if ( s < 40 ) { l.remove( d ); return } //++can make less sensitive
             l.add( d );
             if ( s < scrolled ) { l.remove( d ) }
             else { l.add( d ) }
@@ -136,5 +137,12 @@
                 }, -200 );
             }, ['jQuery'] );
         }
+
+    const nav_top = document.querySelector( '#nav-top' );
+    const nav_top_scroll_trigger = document.querySelector( '#nav-top-scroll-trigger' );
+    const observer = new IntersectionObserver( ( [entry] ) => {
+        nav_top.classList.toggle( 'stuck', entry.intersectionRatio < 1 );
+    });
+    observer.observe( nav_top_scroll_trigger );
 
 },300)}();

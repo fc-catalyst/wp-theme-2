@@ -81,16 +81,16 @@ img {
 }
 
 /* header with admin bar */
-body.admin-bar header.site-header {
+body.admin-bar .nav-top {
 	top:32px;
 }
 @media screen and ( max-width: 782px ) {
-	body.admin-bar header.site-header {
+	body.admin-bar .nav-top {
 		top:46px;
 	}
 }
 @media screen and ( max-width: 600px ) {
-    body.admin-bar.header-fixed.scrolled header.site-header {
+    body.admin-bar .nav-top {
         top:0;
     }
 }

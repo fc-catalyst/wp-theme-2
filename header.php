@@ -16,9 +16,12 @@
 
 	<header class="site-header gutenberg-container">
         PRINT HEADER CONTENT
+        <br><br><br><br><br><br><br><br><br><br>
+        PRINT HEADER CONTENT
 	</header>
 
     <?php if ( has_nav_menu( 'main' ) ) : ?>
+    <div id="nav-top-scroll-trigger"></div>
     <input type="checkbox" id="nav-top-toggle" aria-hidden="true">
     <nav class="nav-top gutenberg-container" id="nav-top" aria-label="Main menu">
         <div>
