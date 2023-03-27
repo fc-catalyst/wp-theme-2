@@ -82,18 +82,24 @@ add_action( 'save_post', function( $postID ) {
         $f = FCT_SET['pref'] . $f;
         if ( empty( $_POST[ $f ] ) || empty( $new_value = sanitize_meta( $_POST[ $f ], $f, $postID ) ) ) {
             delete_post_meta( $postID, $f );
-            continue;
-        }
-        update_post_meta( $postID, $f, $new_value );
+        } else {
+        	update_post_meta( $postID, $f, $new_value );
+		}
+
+		// update the default option
+		$d = FCT_SET['pref'].'default';
+		if ( $f === FCT_SET['pref'].'category' ) {
+			$defaults = get_option( $d ) ?: [];
+			if ( ( $found = array_search( $postID, $defaults ) ) !== false ) {
+				unset( $defaults[ $found ] );
+			}
+			if ( $_POST[ $f ] && $_POST[ $d ] ) {
+				$defaults[ $_POST[ $f ] ] = $postID;
+			}
+			update_option( $d, $defaults );
+		}
     }
 
-	$f = FCT_SET['pref'] . 'default';
-	if ( empty( $_POST[ $f ] ) || empty( $new_value = sanitize_meta( $_POST[ $f ], $f, $postID ) ) ) {
-		delete_option( $f );
-		return;
-	}
-	update_option( $f, $new_value );
-	
 });
 
 function sanitize_meta( $value, $field, $postID ) {
@@ -102,10 +108,7 @@ function sanitize_meta( $value, $field, $postID ) {
 
     switch ( $field ) {
         case ( 'category' ):
-            return in_array( $value, ['header', 'footer'] ) ? $value : 'header';
-        break;
-        case ( 'default' ):
-            return $value === '1' ? $postID : '';
+            return in_array( $value, ['', 'header', 'footer'] ) ? $value : 'header';
         break;
     }
 
@@ -125,11 +128,13 @@ function settings_bar() {
 
 	?><br><br><p><strong>Default</strong></p><?php
 
-	checkbox( (object) [
-		'name' => FCT_SET['pref'].'default',
+	$d = FCT_SET['pref'].'default';
+
+	checkbox( (object) [ // ++ replace with apply per post-type, archieve.. lime in first-screen css plugin
+		'name' => $d,
 		'option' => '1',
 		'label' => 'Use as default',
-		'value' => get_option( FCT_SET['pref'].'default' ) == $post->ID ? 1 : '', // ++save by category!!!
+		'value' => in_array( $post->ID, get_option( $d ) ?: [] ),
 	]);
 
 
@@ -139,9 +144,6 @@ function settings_bar() {
 
     <?php
 }
-
-// header / footer select
-// is default checkbox
 
 function select($a) {
     ?>
