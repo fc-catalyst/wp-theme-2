@@ -71,8 +71,8 @@
         }
         
         function menu_events() {
-            var $checkbox = $( '#nav-primary-toggle' ),
-                $hamburger = $( '#nav-primary-toggle + .site-header .toggle-label' );
+            var $checkbox = $( '#nav-top-toggle' ),
+                $hamburger = $( '#nav-top-toggle + .site-header .hamburger' );
 
             $checkbox.click( function() {
                 setTimeout( function() {

@@ -10,38 +10,33 @@
 <body <?php body_class(); ?> id="document-top">
 
 	<ul class="skip-links">
-		<li>
-            <a href="#main-content" class="screen-reader-shortcut"><?php _e( 'Skip to main content', 'fct' ) ?></a>
-        </li>
-		<li>
-            <a href="#footer" class="screen-reader-shortcut"><?php _e( 'Skip to footer', 'fct' ) ?></a>
-        </li>
+		<li><a href="#main-content" class="screen-reader-shortcut"><?php _e( 'Skip to main content', 'fct' ) ?></a></li>
+		<li><a href="#footer" class="screen-reader-shortcut"><?php _e( 'Skip to footer', 'fct' ) ?></a></li>
 	</ul>
 
-    <input type="checkbox" id="nav-primary-toggle" aria-hidden="true">
-	<header class="site-header">
-		<div class="header-wrap">
+	<header class="site-header gutenberg-container">
+        PRINT HEADER CONTENT
+	</header>
 
-            <?php if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) { the_custom_logo(); } else { ?>
+    <?php if ( has_nav_menu( 'main' ) ) : ?>
+    <input type="checkbox" id="nav-top-toggle" aria-hidden="true">
+    <nav class="nav-top gutenberg-container" id="nav-top" aria-label="Main menu">
+        <div>
+            <?php if ( 1 === 2 && function_exists( 'the_custom_logo' ) && has_custom_logo() ) { //the_custom_logo(); } else { ?>
             <a href="<?php echo home_url() ?>" class="custom-logo-link" rel="home">
                 <img src="<?php echo get_stylesheet_directory_uri() . '/imgs/logo.svg' ?>" width="526" height="160" alt="<?php echo get_bloginfo( 'name' ) ?>"/>
             </a>
             <?php } ?>
-
-            <?php if ( has_nav_menu( 'main' ) ) : ?>
-            <nav class="nav-primary" id="nav-primary" aria-label="Main menu">
-                <label for="nav-primary-toggle" class="toggle-label"></label>
-                <?php
-                    wp_nav_menu( [
-                        'theme_location'  => is_user_logged_in() ? 'logged' : 'main',
-                        'menu_class'      => 'menu menu-primary',
-                        'menu_id'         => 'menu-primary'
-                    ] );
-                ?>
-            </nav>
-            <?php endif ?>
-
-		</div>
-	</header>
+            <label for="nav-top-toggle" class="hamburger"></label>
+            <?php
+                wp_nav_menu( [
+                    'theme_location'  => is_user_logged_in() ? 'logged' : 'main',
+                    'menu_class'      => 'menu menu-primary',
+                    'menu_id'         => 'menu-primary'
+                ] );
+            ?>
+        </div>
+    </nav>
+    <?php endif ?>
 
 	<main id="main-content">
