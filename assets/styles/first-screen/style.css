@@ -262,6 +262,10 @@ p {
 }
 
 /* scroll tracking */
+#nav-top-scroll-trigger {
+    height: 1px;
+    margin-top: -1px;
+}
 .nav-top {
     transition: transform 0.4s ease-out;
 }
@@ -417,6 +421,12 @@ p {
     padding-left: 15px;
     padding-right: 15px;
     box-sizing: border-box;
+}
+.gutenberg-container>*:first-child {
+    margin-top: 0 !important;
+}
+.gutenberg-container>*:last-child {
+    margin-bottom: 0 !important;
 }
 
 /* full-width blocks > .alignfull */

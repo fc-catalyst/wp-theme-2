@@ -155,41 +155,6 @@ add_action( 'admin_init', function () {
 });
 
 
-/* useful functions */
-
-// operate meta fields in my way
-function fct_meta($name = '', $before = '', $after = '', $expect_array = false) // ++eliminate
-{ // ++allow $name be an array for entity-add/templates/func..gmap
-	static $a = []; // collect all the values for further re-use
-
-	$return = $expect_array ? [null] : null;
-
-	if (!$name) {
-		return $return;
-	}
-
-	if (($id = get_the_ID()) === false) {
-		return $return;
-	}
-
-	if (!isset($a[$id])) {
-		$a[$id] = get_post_meta($id);
-	}
-
-	if (!isset($a[$id][$name])) {
-		return $return;
-	}
-
-	$v = $a[$id][$name][0];
-
-	if (is_serialized($v)) {
-		return unserialize($v);
-	}
-
-	return $before . $v . $after;
-}
-
-
 // print the loadings script the highest
 $fcLoadScriptVariable = function () {
 	$name = 'fcLoadScriptVariable';

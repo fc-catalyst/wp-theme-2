@@ -139,10 +139,11 @@
         }
 
     const nav_top = document.querySelector( '#nav-top' );
-    const nav_top_scroll_trigger = document.querySelector( '#nav-top-scroll-trigger' );
+    const nav_top_scroll_passed_trigger = document.createElement( 'div' );
+    nav_top.parentNode.insertBefore( nav_top_scroll_passed_trigger, nav_top.nextSibling );
     const observer = new IntersectionObserver( ( [entry] ) => {
         nav_top.classList.toggle( 'stuck', entry.intersectionRatio < 1 );
-    });
-    observer.observe( nav_top_scroll_trigger );
+    }, { threshold: [0] } ); // meaning, on became fully invisible
+    observer.observe( nav_top_scroll_passed_trigger );
 
 },300)}();

@@ -176,3 +176,30 @@ function checkbox($a) {
     <?php echo isset( $a->comment ) ? '<p><em>'.esc_html( $a->comment ).'</em></p>' : '' ?>
     <?php
 }
+
+function print_section($category) {
+	static $default_categories = [];
+
+	if ( empty( $default_categories ) ) {
+		$default_categories = get_option( FCT_SET['pref'].'default' );
+	}
+
+	if ( !isset( $default_categories[ $category ] ) ) { return; }
+
+	$the_query = new \WP_Query( [
+		'post_type'  => 'fct-section',
+		'post__in'   => [ $default_categories[ $category ] ],
+		'meta_query' => [
+			[
+				'key' => FCT_SET['pref'].'category',
+				'value' => $category,
+				'compare' => '=',
+			],
+		],
+	]);
+
+	while ( $the_query->have_posts() ) {
+		$p = $the_query->next_post();
+		echo apply_filters( 'the_content', $p->post_content );
+	}
+}

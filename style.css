@@ -95,16 +95,6 @@ body.admin-bar .nav-top {
     }
 }
 
-/* gutenberg improvements */
-.entry-content > *:last-child {
-    margin-bottom:0;
-}
-.entry-content > p:last-child,
-.entry-content > ol:last-child,
-.entry-content > ul:last-child {
-    margin-bottom:50px;
-}
-
 /* stretched columns */
 .are-vertically-aligned-stretch {
     align-items:stretch;
@@ -137,19 +127,6 @@ body.admin-bar .nav-top {
     font-weight:600;
 }
 
-/* gutenberg styling */
-
-.entry-content figure > figcaption {
-    padding-left:15px;
-    padding-right:15px;
-    text-align:center;
-    font-size:16px;
-    font-style:italic;
-    opacity:0.8;
-}
-.entry-content figure {
-    text-align:center;
-}
 
 /* float images mobile */
 @media (max-width:650px) {
@@ -159,23 +136,6 @@ body.admin-bar .nav-top {
     }
 }
 
-/* fix classic editor */
-.entry-content p > .alignleft,
-.entry-content p > .alignright {
-    float:none;
-    display:block;
-    margin:22px auto 17px;
-}
-@media (min-width:768px) {
-    .entry-content p > .alignleft {
-        float:left;
-        margin:35px 40px 35px 0;
-    }
-    .entry-content p > .alignright {
-        float:right;
-        margin:35px 0 35px 40px;
-    }
-}
 
 /* hide the next block to open onclick */
 .fct-open-next:not( .active ) + * {

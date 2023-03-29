@@ -22,6 +22,7 @@
 
     // add the control / input
     var el = wp.element.createElement;
+    
     wp.hooks.addFilter(
         'editor.BlockEdit',
         'fct-gutenberg/turn-to-hero-control',
