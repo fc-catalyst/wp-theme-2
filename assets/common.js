@@ -140,6 +140,7 @@
 
     const nav_top = document.querySelector( '#nav-top' );
     const nav_top_scroll_passed_trigger = document.createElement( 'div' );
+    nav_top_scroll_passed_trigger.id = 'nav-top-scroll-trigger'; // for css
     nav_top.parentNode.insertBefore( nav_top_scroll_passed_trigger, nav_top.nextSibling );
     const observer = new IntersectionObserver( ( [entry] ) => {
         nav_top.classList.toggle( 'stuck', entry.intersectionRatio < 1 );
