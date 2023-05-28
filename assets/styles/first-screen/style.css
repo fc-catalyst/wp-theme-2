@@ -9,25 +9,12 @@
 
 html {
     scroll-behavior: smooth;
-    /* initial value */
+    /* initial value changed by common.js later to better pick the scroll position */
 }
 
 body {
     margin: 0;
     padding: 0;
-}
-
-body * {
-    font-family: 'Open Sans', sans-serif;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: 'Poppins', sans-serif;
 }
 
 h1 {

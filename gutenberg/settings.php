@@ -4,22 +4,24 @@ add_action( 'after_setup_theme', function() {
 
     add_theme_support( 'align-wide' ); // gutenberg full-width and wide blocks
 
-    add_theme_support( 'editor-color-palette', array_reduce( array_keys( FCT_SET['colors'] ), function( $result, $key ) {
-        $format = function($k,$v, $prefix = '') use (&$format) {
-            if ( is_array( $v ) ) {
-                return array_map( function($l) use ($k, $v, $prefix, $format) {
-                    return $format( $l, FCT_SET['colors'][ $k ][ $l ], $prefix.$k.'-' )[0];
-                }, array_keys( $v ) );
+    add_theme_support( 'editor-color-palette', (function() {
+        $result = [];
+        $format = function($array, $prefix = '') use (&$result, &$format) {
+            foreach ($array as $key => $value) {
+                if (is_array($value)) {
+                    $format($value, $prefix.$key.'-');
+                } else {
+                    $result[] = [
+                        'name'  => ucfirst($prefix.$key),
+                        'slug'  => FCT_SET['pref'].$prefix.$key,
+                        'color' => $value,
+                    ];
+                }
             }
-            return [[
-                'name'  => ucfirst( $prefix.$k ),
-                'slug'  => FCT_SET['pref'].$prefix.$k,
-                'color' => $v,
-            ]];
         };
-        return array_merge( $result, $format( $key, FCT_SET['colors'][ $key ] ) );
-    }, [] ));
-    
+        $format( FCT_SET['colors'] );
+        return $result;
+    })());
     
     add_theme_support( 'editor-font-sizes', array_reduce( array_keys( FCT_SET['font_sizes'] ), function( $result, $key ) {
         $format = function($k,$v) {

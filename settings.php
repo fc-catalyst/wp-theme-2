@@ -4,17 +4,34 @@ define( 'FCT_SET', [
     'var'            => 'fct',
     'pref'           => 'fct-',
     'gmap_api_key'   => '',
+    'fonts' => [
+        'all' => '"Open Sans", sans-serif',
+        'headings' => '"Open Sans", sans-serif',
+        'h1' => '"Poppins", sans-serif',
+        'h2' => '"Poppins", sans-serif',
+    ],
     'fonts_external' => '',
     'colors' => [ // can not use 'text', 'background'
-        'plain' => '#22323d',
-        'link' => '#007991',
-        'hover' => '#ffab5e',
-        'headline' => '#208294',
-        'gutenberg' => [ // keep the position / index to change globally
-            '#ffffff', '#000000', '#f2f8f9', '#ecf0f2', '#ededed', '#eaeef0', 
+        'plain' => '#666666',
+        'link' => '#6ea2cc',
+        'hover' => '#22323d',
+        'headline' => '#60615f',
+        'bg' => [
+            'light' => '#83bff1',
+            'medium' => '#78b0de',
+            'dark' => '#6ea2cc',
+        ],
+        'gutenberg' => [ // keep the position or add text index index to change globally
+            '#ffffff',
+            '#000000',
+            'bg' => [
+                '#f8f9f9',
+                '#ffffff',
+                '#ababab',
+            ]
         ]
     ],
-    'font_sizes' => [ 13, 14, 15, 'sixteen' => 16, 20.8, 25, 37, 45, 80 ],
+    'font_sizes' => [ 11, 13, 14, 16, 18, 19, 40 ],
     'defer_styles' => [
         'wp-block-library', 'classic-theme-styles'
     ],

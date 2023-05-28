@@ -61,6 +61,7 @@ add_action( 'wp_enqueue_scripts', function() {
 
     // print theme settings
     $enqueue_inline( FCT_SET['pref'].'variables', get_settings_variables() );
+    $enqueue_inline( FCT_SET['pref'].'fonts', get_settings_fonts() );
     $enqueue_inline( FCT_SET['pref'].'gutenberg', get_settings_gutenberg() );
 
     // print external fonts
@@ -159,21 +160,25 @@ function defer($name, $priority = 10) {
 }
 
 function get_settings_gutenberg() {
-    $colors_to_css = function( $colors, $prefix = '' ) use ( &$colors_to_css ) {
-        return array_reduce( array_keys( $colors ), function ( $result, $item ) use ( $colors_to_css, $colors, $prefix ) {
-            $color = $colors[ $item ];
-            if ( is_array( $color ) ) {
-                $result = array_merge( $result, $colors_to_css( $color, $item ) );
-                return $result;
+
+    $colors_to_css = function($colors) {
+        $result = [];
+        $format = function($array, $prefix = '') use (&$result, &$format) {
+            foreach ($array as $key => $value) {
+                if (is_array($value)) {
+                    $format($value, $prefix.$key.'-');
+                } else {
+                    $slug = _wp_to_kebab_case( FCT_SET['pref'].$prefix.$key );
+                    $result[] = '
+                    .has-'.$slug.'-background-color { background-color: '.$value.' }
+                    .has-'.$slug.'-color   { color: '.$value.' !important }
+                    .has-'.$slug.'-color * { color: '.$value.' }
+                    ';
+                }
             }
-            $slug = _wp_to_kebab_case( is_numeric( $item ) ? $prefix.'-'.$item : $item );
-            $result[] = '
-            .has-'.$slug.'-background-color { background-color: '.$color.' }
-            .has-'.$slug.'-color   { color: '.$color.' !important }
-            .has-'.$slug.'-color * { color: '.$color.' }
-            ';
-            return $result;
-        }, [] );
+        };
+        $format( $colors );
+        return $result;
     };
 
     $fonts_to_css = function( $fonts ) {
@@ -201,12 +206,27 @@ function get_settings_variables() {
             $color = $colors[ $item ];
             if ( !is_string( $color ) ) { return $result; }
             $result .= '
-            --fct-'.sanitize_html_class( $item ).': '.$color.'
+            --'.FCT_SET['pref'].sanitize_html_class( $item ).': '.$color.'
             ';
             return $result;
         }, '' );
     };
 
     return ':root {' . "\n" . $colors_to_var( FCT_SET['colors'] ) . "\n" . '}';
+
+}
+
+function get_settings_fonts() {
+
+    $fonts_to_selectors = function( $fonts ) {
+        return array_reduce( array_keys( $fonts ), function ( $result, $key ) use ( $fonts ) {
+            $font = $fonts[ $key ];
+            $selector = ['all'=>'*','headings'=>'h1,h2,h3,h4,h5,h6'][ $key ] ?? $key;
+            $result .= ''.$selector.' { font-family:'.$font.' }'."\n\n";
+            return $result;
+        }, '' );
+    };
+
+    return $fonts_to_selectors( FCT_SET['fonts'] );
 
 }
