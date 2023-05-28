@@ -187,6 +187,7 @@ function get_settings_gutenberg() {
         }, [] );
     };
 
+    $content  = '';
     $content .= implode( '', $colors_to_css( FCT_SET['colors'] ) ); // keep the array so it can be modified similar to the gutenberg settings alike function
     $content .= implode( '', $fonts_to_css( FCT_SET['font_sizes'] ) );
 
