@@ -70,7 +70,7 @@ add_action( 'add_meta_boxes', function() {
 add_action( 'save_post', function( $postID ) {
 
     if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) { return; }
-    if ( !wp_verify_nonce( $_POST[ FCT_SET['pref'].'nonce' ], FCT_SET['pref'].'nonce' ) ) { return; }
+    if ( !isset( $_POST[ FCT_SET['pref'].'nonce' ] ) || !wp_verify_nonce( $_POST[ FCT_SET['pref'].'nonce' ], FCT_SET['pref'].'nonce' ) ) { return; }
     if ( !current_user_can( 'administrator' ) ) { return; }
 
     $post = get_post( $postID );
@@ -123,7 +123,7 @@ function settings_bar() {
 	select( (object) [
 		'name' => FCT_SET['pref'].'category',
 		'options' => ['' => 'None', 'header' => 'Header', 'footer' => 'Footer'],
-		'value' => get_post_meta( $post->ID, FCT_SET['pref'].'category' )[0],
+		'value' => get_post_meta( $post->ID, FCT_SET['pref'].'category' )[0] ?? [],
 	]);
 
 	?><br><br><p><strong>Default</strong></p><?php
@@ -140,7 +140,7 @@ function settings_bar() {
 
 	?>
     
-    <input type="hidden" name="<?php echo esc_attr( FCT_SET['pref'] ) ?>nonce" value="<?= esc_attr( wp_create_nonce( FCT_SET['pref'].'nonce' ) ) ?>">
+    <input type="hidden" name="<?php echo esc_attr( FCT_SET['pref'].'nonce' ) ?>" value="<?= esc_attr( wp_create_nonce( FCT_SET['pref'].'nonce' ) ) ?>">
 
     <?php
 }

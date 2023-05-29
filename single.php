@@ -42,7 +42,7 @@ if ( have_posts() ) :
 <article class="post-<?php the_ID() ?> <?php echo get_post_type() ?> type-<?php echo get_post_type() ?> status-<?php echo get_post_status() ?> entry" itemscope="" itemtype="https://schema.org/Article">
     <div class="post-content" itemprop="text">
 
-        <?php echo $header ? '<header>' . $header . '</header>' : '' ?>
+        <?php echo isset( $header ) ? '<header>' . $header . '</header>' : '' ?>
 
         <div class="entry-content">
             <div style="height:90px" aria-hidden="true" class="wp-block-spacer"></div>
