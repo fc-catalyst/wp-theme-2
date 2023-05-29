@@ -4,7 +4,7 @@ add_action( 'after_setup_theme', function() {
 
     add_theme_support( 'align-wide' ); // gutenberg full-width and wide blocks
 
-    add_theme_support( 'editor-color-palette', (function() {
+    add_theme_support( 'editor-color-palette', (function() { // +++unify the function to use to sizes too and in printing too
         $result = [];
         $format = function($array, $prefix = '') use (&$result, &$format) {
             foreach ($array as $key => $value) {

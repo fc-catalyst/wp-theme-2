@@ -22,7 +22,7 @@
     <input type="checkbox" id="nav-top-toggle" aria-hidden="true">
     <nav class="nav-top gutenberg-container" id="nav-top" aria-label="Main menu">
         <div>
-            <?php if ( 1 === 2 && function_exists( 'the_custom_logo' ) && has_custom_logo() ) { //the_custom_logo(); } else { ?>
+            <?php if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) { the_custom_logo(); } else { ?>
             <a href="<?php echo home_url() ?>" class="custom-logo-link" rel="home">
                 <img src="<?php echo get_stylesheet_directory_uri() . '/imgs/logo.svg' ?>" width="526" height="160" alt="<?php echo get_bloginfo( 'name' ) ?>"/>
             </a>
