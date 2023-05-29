@@ -170,9 +170,9 @@ function get_settings_gutenberg() {
                 } else {
                     $slug = _wp_to_kebab_case( FCT_SET['pref'].$prefix.$key );
                     $result[] = '
-                    .has-'.$slug.'-background-color { background-color: '.$value.' }
-                    .has-'.$slug.'-color   { color: '.$value.' !important }
-                    .has-'.$slug.'-color * { color: '.$value.' }
+                    .has-background.has-'.$slug.'-background-color { background-color: '.$value.' }
+                    .has-text-color.has-'.$slug.'-color   { color: '.$value.' }
+                    .has-text-color.has-'.$slug.'-color * { color: '.$value.' }
                     ';
                 }
             }

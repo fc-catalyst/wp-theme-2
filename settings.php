@@ -31,7 +31,7 @@ define( 'FCT_SET', [
             ]
         ]
     ],
-    'font_sizes' => [ 11, 13, 14, 16, 18, 19, 40 ],
+    'font_sizes' => [ 11, 13, 14, 16, 18, 19, 22, 40 ],
     'defer_styles' => [
         'wp-block-library', 'classic-theme-styles'
     ],

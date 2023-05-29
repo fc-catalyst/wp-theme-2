@@ -1,5 +1,5 @@
 <?php
-
+// ++ just move to index as these are not real settings
 add_action( 'after_setup_theme', function() {
 
     add_theme_support( 'align-wide' ); // gutenberg full-width and wide blocks

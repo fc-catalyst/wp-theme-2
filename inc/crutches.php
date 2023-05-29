@@ -16,7 +16,7 @@ add_action( 'transition_post_status', function ($new_status, $old_status, $post)
 
 
 // fix the gap, caused by wp-container-{ID}
-remove_filter( 'render_block', 'wp_render_layout_support_flag', 10, 2 );
+//remove_filter( 'render_block', 'wp_render_layout_support_flag', 10, 2 ); // it breaks the buttons flex aligning
 remove_filter( 'render_block', 'gutenberg_render_layout_support_flag', 10, 2 );
 
 
