@@ -5,10 +5,10 @@ define( 'FCT_SET', [
     'pref'           => 'fct-',
     'gmap_api_key'   => '',
     'fonts' => [
-        'all' => '"Open Sans", sans-serif',
-        'headings' => '"Open Sans", sans-serif',
-        'h1' => '"Poppins", sans-serif',
-        'h2' => '"Poppins", sans-serif',
+        'all' => '"Raleway", "Open Sans", sans-serif',
+        'headings' => '"Raleway", sans-serif',
+        //'h1' => '"Poppins", sans-serif',
+        //'h2' => '"Poppins", sans-serif',
     ],
     'fonts_external' => '',
     'colors' => [ // can not use 'text', 'background'

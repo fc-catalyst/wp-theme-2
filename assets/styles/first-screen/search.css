@@ -89,7 +89,7 @@ article h2>a {
 .entry-excerpt,
 .entry-excerpt * {
     margin: 0;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--blog-main-color);
 }
 
@@ -103,6 +103,6 @@ article h2>a {
 
 .entry-meta,
 .entry-meta * {
-    font-weight: 300;
+    font-weight: 400;
     color: #5c6569;
 }

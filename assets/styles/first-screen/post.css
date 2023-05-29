@@ -52,7 +52,7 @@ h1, h2, h3 {
     }
     
     .wp-block-image figcaption {
-        font-weight:300;
+        font-weight:400;
     }
 
 }
@@ -107,7 +107,7 @@ article ul li::before {
 }
 
 .fct-hero .entry-details {
-    font-weight:300;
+    font-weight:400;
 }
 .fct-hero .entry-details * {
     text-decoration:none;

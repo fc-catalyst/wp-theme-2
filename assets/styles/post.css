@@ -2,7 +2,7 @@
 .author-box {
     margin-top:60px;
     margin-bottom:40px;
-    font-weight:300;
+    font-weight:400;
 }
 .author-photo {
     width:100%;
@@ -144,7 +144,7 @@
 .tmp-tiles .entry-date {
     margin-bottom:8px;
     font-size:16px;
-    font-weight:300;
+    font-weight:400;
     color:var(--blog-main-color);
 }
 
@@ -152,7 +152,7 @@
 .tmp-tiles .entry-excerpt * {
     margin:0;
     font-size:16px;
-    font-weight:300;
+    font-weight:400;
     letter-spacing:0.8px;
     color:#000;
 }

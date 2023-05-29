@@ -119,7 +119,7 @@ article h2 > a::before { /* over the image above */
 .entry-date {
     margin-bottom:8px;
     font-size:18px;
-    font-weight:300;
+    font-weight:400;
     color:var(--blog-main-color);
 }
 
@@ -127,7 +127,7 @@ article h2 > a::before { /* over the image above */
 .entry-excerpt * {
     margin:0;
     font-size:18px;
-    font-weight:300;
+    font-weight:400;
     letter-spacing:0.8px;
 }
 
@@ -217,5 +217,5 @@ article h2 > a:hover::before {
 }
 
 .fct-hero p {
-    font-weight:300;
+    font-weight:400;
 }

@@ -182,9 +182,10 @@ function get_settings_gutenberg() {
     };
 
     $fonts_to_css = function( $fonts ) {
-        return array_reduce( $fonts, function ( $result, $item ) {
-            $slug = _wp_to_kebab_case( str_replace( '.', 'dot', strval( $item ) ) );
-            $value  = floatval( $item );
+        return array_reduce( array_keys( $fonts ), function ( $result, $key ) use ( $fonts ) {
+            $size = $fonts[ $key ];
+            $slug = _wp_to_kebab_case( FCT_SET['pref'] . ( is_numeric( $key ) ? 'fs-'.str_replace( '.', '_', $size ) : $key ) );
+            $value  = floatval( $size );
             $result[] = '
             .has-'.$slug.'-font-size { font-size:'.$value.'px }
             ';

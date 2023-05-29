@@ -62,7 +62,7 @@ li {
     padding:0 0 0 4px;
     line-height:1.6;
     font-size:18px;
-    font-weight:300;
+    font-weight:400;
 }
 
 a {
@@ -73,7 +73,7 @@ a:hover {
     opacity:0.9;
 }
 b, strong {
-    font-weight:600;
+    font-weight:700;
 }
 
 img {
@@ -201,7 +201,7 @@ body.admin-bar .nav-top {
     display: block;
     padding-right: 1em;
     margin-right: 1em;
-    font-weight: 300;
+    font-weight: 400;
     margin-top: 30px;
 }
 

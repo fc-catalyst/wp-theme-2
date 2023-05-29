@@ -29,7 +29,7 @@ add_action( 'after_setup_theme', function() {
                 'name'      => ( is_numeric( $k ) ? 'Font Size' : ucfirst( $k ) ) . ' '.$v,
                 'shortName' => ( is_numeric( $k ) ? 'Size' : ucfirst( $k ) ) . ' '.$v,
                 'size'      => $v,
-                'slug'      => FCT_SET['pref'] . ( is_numeric( $k ) ? 'fs' : $k ) . '-'.str_replace( '.', '_', $v ),
+                'slug'      => FCT_SET['pref'] . ( is_numeric( $k ) ? 'fs-'.str_replace( '.', '_', $v ) : $k ),
             ];
         };
         $result[] = $format( $key, FCT_SET['font_sizes'][ $key ] );
