@@ -12,15 +12,13 @@ add_action( 'wp_enqueue_scripts', function() { // using wp_footer reduced the pa
 
     foreach ( $enqueue_files as $v ) {
         if ( !is_file( $enqueue_dir . $v . $min . '.css' ) ) { continue; }
-
         wp_enqueue_style(
             FCT_SET['pref'] . $v,
             $enqueue_url . $v . $min . '.css',
-            [ FCT_SET['pref'] . 'style' ], // after the main one
+            [ FCT_SET['pref'] . 'style' ], // after the main one to override
             FCT_VER,
             'all'
         );
-
     }
     
     // main css & js
@@ -48,6 +46,7 @@ add_action( 'wp_enqueue_scripts', function() { // using wp_footer reduced the pa
     if ( !empty( FCT_SET['defer_styles'] ?? [] ) ) {
         defer( FCT_SET['defer_styles'] );
     }
+
 });
 
 // add first screen styles
@@ -60,14 +59,12 @@ add_action( 'wp_enqueue_scripts', function() {
     };
 
     // print theme settings
-    $enqueue_inline( FCT_SET['pref'].'variables', get_settings_variables() );
-    $enqueue_inline( FCT_SET['pref'].'fonts', get_settings_fonts() );
-    $enqueue_inline( FCT_SET['pref'].'gutenberg', get_settings_gutenberg() );
+    $enqueue_inline( FCT_SET['pref'].'settings', get_settings_variables() . get_settings_fonts() . get_settings_gutenberg() );
 
     // print external fonts
     echo FCT_SET['fonts_external'] ?? '';
 
-    // print the styles from first-screen
+    // print the styles from the first-screen
     $include_dir = get_template_directory() . '/assets/styles/first-screen/';
     $include_files = array_merge( ['style'], css_files_get() );
 
@@ -170,9 +167,9 @@ function get_settings_gutenberg() {
                 } else {
                     $slug = _wp_to_kebab_case( FCT_SET['pref'].$prefix.$key );
                     $result[] = '
-                    .has-background.has-'.$slug.'-background-color { background-color: '.$value.' }
-                    .has-text-color.has-'.$slug.'-color   { color: '.$value.' }
-                    .has-text-color.has-'.$slug.'-color * { color: '.$value.' }
+.has-background.has-'.$slug.'-background-color { background-color: '.$value.' }
+.has-text-color.has-'.$slug.'-color,
+.has-text-color.has-'.$slug.'-color * { color: '.$value.' }
                     ';
                 }
             }
@@ -186,16 +183,14 @@ function get_settings_gutenberg() {
             $size = $fonts[ $key ];
             $slug = _wp_to_kebab_case( FCT_SET['pref'] . ( is_numeric( $key ) ? 'fs-'.str_replace( '.', '_', $size ) : $key ) );
             $value  = floatval( $size );
-            $result[] = '
-            .has-'.$slug.'-font-size { font-size:'.$value.'px }
-            ';
+            $result[] = '.has-'.$slug.'-font-size { font-size:'.$value.'px }' . "\n";
             return $result;
         }, [] );
     };
 
     $content  = '';
-    $content .= implode( '', $colors_to_css( FCT_SET['colors'] ) ); // keep the array so it can be modified similar to the gutenberg settings alike function
-    $content .= implode( '', $fonts_to_css( FCT_SET['font_sizes'] ) );
+    $content .= '/* gutenberg colors */'."\n" . implode( '', $colors_to_css( FCT_SET['colors'] ) ) . "\n\n"; // keep the array so it can be modified similar to the gutenberg settings alike function
+    $content .= '/* gutenberg font-sizes */'."\n" . implode( '', $fonts_to_css( FCT_SET['font_sizes'] ) ) . "\n\n";
 
     return $content;
 }
@@ -206,14 +201,12 @@ function get_settings_variables() {
         return array_reduce( array_keys( $colors ), function ( $result, $item ) use ( $colors ) {
             $color = $colors[ $item ];
             if ( !is_string( $color ) ) { return $result; }
-            $result .= '
-            --'.FCT_SET['pref'].sanitize_html_class( $item ).': '.$color.'
-            ';
+            $result .= "\t".'--'.FCT_SET['pref'].sanitize_html_class( $item ).': '.$color."\n";
             return $result;
         }, '' );
     };
 
-    return ':root {' . "\n" . $colors_to_var( FCT_SET['colors'] ) . "\n" . '}';
+    return '/* main variables */'."\n" . ':root {' . "\n" . $colors_to_var( FCT_SET['colors'] ) . "\n" . '}' . "\n\n";
 
 }
 
@@ -223,11 +216,11 @@ function get_settings_fonts() {
         return array_reduce( array_keys( $fonts ), function ( $result, $key ) use ( $fonts ) {
             $font = $fonts[ $key ];
             $selector = ['all'=>'*','headings'=>'h1,h2,h3,h4,h5,h6'][ $key ] ?? $key;
-            $result .= ''.$selector.' { font-family:'.$font.' }'."\n\n";
+            $result .= $selector.' { font-family:'.$font.' }'."\n";
             return $result;
         }, '' );
     };
 
-    return $fonts_to_selectors( FCT_SET['fonts'] );
+    return '/* font families */'."\n" . $fonts_to_selectors( FCT_SET['fonts'] ) . "\n\n";
 
 }
