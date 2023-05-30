@@ -10,6 +10,8 @@ require __DIR__ . '/inc/shortcodes.php';
 require __DIR__ . '/inc/comments.php';
 require __DIR__ . '/inc/crutches.php';
 require __DIR__ . '/inc/sections.php';
+require __DIR__ . '/inc/form-fields.php'; // ++only if is_admin
+require __DIR__ . '/inc/meta-boxes.php'; // ++only if is_admin
 require __DIR__ . '/gutenberg/index.php';
 require __DIR__ . '/gutenberg/settings.php';
 
