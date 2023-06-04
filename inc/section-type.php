@@ -57,6 +57,25 @@ add_action('init', function () {
 });
 
 
+/* modifying the admin table */
+add_filter( 'manage_'.FCT_SET['pref'].'section'.'_posts_columns', function( $columns ) {
+    $columns[ FCT_SET['pref'].'category' ] = 'Category';
+    $columns[ FCT_SET['pref'].'default' ] = 'Default';
+    return $columns;
+});
+add_action( 'manage_'.FCT_SET['pref'].'section'.'_posts_custom_column' , function( $column, $post_id ) {
+    switch ( $column ) {
+        case FCT_SET['pref'].'category':
+            echo FCT_SET['sections'][ get_post_meta( $post_id, FCT_SET['pref'].'category', true ) ] ?? '';
+            break;
+        case FCT_SET['pref'].'default':
+            $default_categories = get_option( FCT_SET['pref'].'default' ) ?? [];
+            echo in_array( $post_id, $default_categories ) ? '<span style="color:gold;font-size:24px">&#9733;</span>' : '';
+            break;
+    }
+}, 10, 2 );
+
+
 /* printing function */
 
 function get_section($category, $start = '', $end = '') {
@@ -72,7 +91,7 @@ function get_section($category, $start = '', $end = '') {
 
     // save the default categories
 	if ( empty( $default_categories ) ) {
-		$default_categories = get_option( FCT_SET['pref'].'default' );
+		$default_categories = get_option( FCT_SET['pref'].'default' ) ?? [];
 	}
 
     $default_id = $default_categories[ $category ] ?? null;
@@ -116,7 +135,7 @@ function get_section($category, $start = '', $end = '') {
 
     return (object) [
         'content' => $format( $collect ),
-        'menu_below' => $menu_below,
+        'menu_below' => $menu_below ?? false,
     ];
 }
 
