@@ -55,7 +55,7 @@ function select($a) {
     >
     <?php foreach ( $a->options as $k => $v ) { ?>
         <option value="<?php echo esc_attr( $k ) ?>"
-            <?php selected( !empty( $a->value ) && $k === $a->value, true ) ?>
+            <?php selected( !empty( $a->value ) && (string) $k === (string) $a->value, true ) // ++ apply strict string comparison allover ?>
         ><?php echo esc_html( $v ) ?></option>
     <?php } ?>
     </select>

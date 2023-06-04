@@ -15,10 +15,16 @@
 		<li><a href="#footer" class="screen-reader-shortcut"><?php _e( 'Skip to footer', 'fct' ) ?></a></li>
 	</ul>
 
-	<header class="site-header gutenberg-container">
-        <?php FCT\Sections\print_section( 'header' ) ?>
-	</header>
+	<?php
 
-    <?php get_template_part( 'template-parts/navigation', 'top' ) ?>
+		if ( FCT\Sections\get_section( 'header' )->menu_below ) {
+			FCT\Sections\print_section( 'header', '<header class="site-header gutenberg-container">', '</header>' );
+			get_template_part( 'template-parts/navigation', 'top' );
+		} else {
+			get_template_part( 'template-parts/navigation', 'top' );
+			FCT\Sections\print_section( 'header', '<header class="site-header gutenberg-container">', '</header>' );
+		}
+    	
+	?>
 
 	<main id="main-content">

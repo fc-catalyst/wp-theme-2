@@ -37,6 +37,10 @@ define( 'FCT_SET', [
         'wp-block-library', 'classic-theme-styles'
     ],
     'defer_styles_theme' => true,
+    'sections' => [
+        'header' => 'Header',
+        'footer' => 'Footer',
+    ],
     
 ]);
 
