@@ -75,7 +75,7 @@ function get_section($category, $start = '', $end = '') {
 		$default_categories = get_option( FCT_SET['pref'].'default' );
 	}
 
-    $default_id = $default_categories[ $category ];
+    $default_id = $default_categories[ $category ] ?? null;
     $custom_id = get_post_meta( get_queried_object_id(), FCT_SET['pref'].'section'.'-'.$category, true );
     $section_id = $custom_id ?: $default_id ?: 'none'; // none is if custom is none or if is no default
     // ++ test get_queried_object_id() on taxonomies and blog pages

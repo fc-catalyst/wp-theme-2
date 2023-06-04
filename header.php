@@ -16,7 +16,7 @@
 	</ul>
 
 	<?php
-
+		// print header ane menu
 		if ( FCT\Sections\get_section( 'header' )->menu_below ) {
 			FCT\Sections\print_section( 'header', '<header class="site-header gutenberg-container">', '</header>' );
 			get_template_part( 'template-parts/navigation', 'top' );
