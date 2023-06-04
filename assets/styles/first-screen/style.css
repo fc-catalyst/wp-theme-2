@@ -513,6 +513,20 @@ body .gutenberg-container .wp-block-image {
     padding: 20px 20px 32px;
 }
 
+.is-vertical .wp-block-navigation__container {
+    gap: 0;
+}
+
+.wp-block-search__inside-wrapper {
+    border: 0;
+    padding: 0;
+}
+.wp-block-search__input,
+.wp-block-search__button {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
 /* gutenberg image as background */
 /* turns to the background for a relative & overflow-hidden parent */
 .wp-block-image.fct-img-to-bg img {

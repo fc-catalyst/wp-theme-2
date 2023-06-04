@@ -160,7 +160,8 @@ function get_settings_gutenberg() {
 
     $colors_to_css = function($colors) {
         $result = [];
-        $format = function($array, $prefix = '') use (&$result, &$format) {
+        $priority = [];
+        $format = function($array, $prefix = '') use (&$result, &$priority, &$format) {
             foreach ($array as $key => $value) {
                 if (is_array($value)) {
                     $format($value, $prefix.$key.'-');
@@ -171,11 +172,15 @@ function get_settings_gutenberg() {
 .has-text-color.has-'.$slug.'-color,
 .has-text-color.has-'.$slug.'-color * { color: '.$value.' }
                     ';
+                    $priority[] = '
+.has-text-color .has-text-color.has-'.$slug.'-color,
+.has-text-color .has-text-color.has-'.$slug.'-color * { color: '.$value.' }
+                    ';
                 }
             }
         };
         $format( $colors );
-        return $result;
+        return array_merge( $result, $priority );
     };
 
     $fonts_to_css = function( $fonts ) {
