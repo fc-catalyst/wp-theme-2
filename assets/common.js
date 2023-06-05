@@ -123,6 +123,7 @@
         }
 //*/
         /* add video by class */
+        /*
         const $video_holder = $( '.fct-video[data-source=direct]' ); // only direct videos, as youtube is in borlabs
         if ( $video_holder.length ) {
             fcLoadScriptVariable(
@@ -137,6 +138,7 @@
                 }, -200 );
             }, ['jQuery'] );
         }
+        //*/
 
     const nav_top = document.querySelector( '#nav-top' );
     const nav_top_scroll_passed_trigger = document.createElement( 'div' );

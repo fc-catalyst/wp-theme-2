@@ -17,6 +17,7 @@ require __DIR__ . '/gutenberg/index.php';
 require __DIR__ . '/gutenberg/settings.php';
 
 
+// ++move to separate file
 /* translations */
 add_action( 'after_setup_theme', function () {
 	load_theme_textdomain( 'fct', get_template_directory() . '/languages' );
@@ -74,7 +75,7 @@ add_filter( 'wp_trim_excerpt', function($text, $raw_excerpt) {
 
 
 // SVG support
-add_filter( 'upload_mimes', function ($types) { // better install the plugin for SVG support!! no conflicts
+add_filter( 'upload_mimes', function ($types) { // ++better install the plugin for SVG support!! no conflicts
 	if ( !current_user_can('administrator') ) { return $types; }
 	return $types + [ 'svg' => 'image/svg+xml' ];
 }, 10, 2 );
@@ -146,6 +147,7 @@ add_action('wp_default_scripts', function ($scripts) {
 /* theme details */
 
 // add custom theme styling for admin-side
+/*
 add_action( 'admin_init', function () {
 
 	wp_admin_css_color(
@@ -156,9 +158,10 @@ add_action( 'admin_init', function () {
 	);
 
 });
-
+//*/
 
 // print the loadings script the highest
+/*
 $fcLoadScriptVariable = function () {
 	$name = 'fcLoadScriptVariable';
 	$settings = (object) [
@@ -176,3 +179,4 @@ $fcLoadScriptVariable = function () {
 add_action( 'wp_head', $fcLoadScriptVariable, 0 );
 add_action( 'admin_enqueue_scripts', $fcLoadScriptVariable, 0 );
 unset( $fcLoadScriptVariable );
+*/
