@@ -294,7 +294,7 @@ body:not(.home) .nav-top li.current-menu-item>a {
 }
 
 /* header */
-.site-header {
+.site-header { /* for sake of background image tumbler */
     position: relative;
     overflow: hidden;
 }

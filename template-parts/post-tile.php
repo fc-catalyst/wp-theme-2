@@ -1,16 +1,14 @@
 <?php
 
 $cat = get_the_category( get_the_ID() )[0];
-$cat = $cat
-    ? '<a href="'.esc_url( get_category_link( $cat ) ).'" class="entry-category">'.esc_html( $cat->name ).'</a>'
-    : ''
-;
+$cat = $cat ? '<a href="'.esc_url( get_category_link( $cat ) ).'" class="entry-category">'.esc_html( $cat->name ).'</a>' : '';
+
 ?>
-<article class="post-<?php the_ID() ?> <?php echo get_post_type() ?> type-<?php echo get_post_type() ?> status-<?php echo get_post_status() ?> entry" itemscope="" itemtype="https://schema.org/CreativeWork">
+<article class="post-<?php the_ID() ?> <?php echo get_post_type() ?> type-<?php echo get_post_type() ?> status-<?php echo get_post_status() ?> entry" itemscope="" itemtype="https://schema.org/Article">
     <header class="entry-header">
         <?php echo $cat ?>
         <div class="entry-photo">
-            <?php fct_image_print( get_post_thumbnail_id(), [500,500], ['center','top'], get_the_title() ) ?>
+            <?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'medium' ); } ?>
         </div>
         <h2 class="entry-title" itemprop="headline">
             <a class="entry-title-link" href="<?php the_permalink() ?>"><?php the_title() ?></a>
@@ -23,7 +21,7 @@ $cat = $cat
         <div class="entry-excerpt">
             <?php the_excerpt() ?>
         </div>
-        <a href="<?php the_permalink() ?>" class="entry-read"><?php _e( 'Read more', 'fct' ) ?></a>
+        <a href="<?php the_permalink() ?>" class="entry-read"><?php _e( 'Read more' ) ?></a>
     </div>
 </article>
 <?php

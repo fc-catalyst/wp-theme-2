@@ -7,22 +7,13 @@ $cat = $cat
 
 $post_type = get_post_type_object( get_post_type() );
 
-$featured_image = in_array( $post_type->name, ['docrot', 'clinic'] )
-    ? fct_image( 'entity/' . get_the_ID() . '/' . (
-        fct_meta( 'entity-photo', '', '', true )[0]
-        ?: fct_meta( 'entity-background', '', '', true )[0]
-        ?: fct_meta( 'entity-avatar', '', '', true )[0]
-        ?: null
-    ))
-    : fct_image( get_post_thumbnail_id() ?: null, [500,500], ['center','top'], get_the_title() );
-
 $type = $post_type ? $post_type->labels->singular_name : '';
 
 ?>
 <article class="post-<?php the_ID() ?> <?php echo get_post_type() ?> type-<?php echo get_post_type() ?> status-<?php echo get_post_status() ?> entry">
     <div class="entry-photo">
         <a class="entry-photo-link" href="<?php the_permalink() ?>">
-            <?php echo $featured_image ?>
+            <?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'medium' ); } ?>
         </a>
     </div>
     <div>
