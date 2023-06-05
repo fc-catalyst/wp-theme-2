@@ -40,6 +40,8 @@ define( 'FCT_SET', [
     'sections' => [
         'header' => 'Header',
         'footer' => 'Footer',
+        'aside-left' => 'Left Sidebar',
+        'aside-right' => 'Right Sidebar',
     ],
     
 ]);

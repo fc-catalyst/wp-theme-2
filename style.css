@@ -16,7 +16,7 @@ License URI:    http://www.gnu.org/licenses/gpl-2.0.html
 
 /* content elements */
 body {
-    color:var(--str-color);
+    color:var(--fct-plain);
 }
 
 p:last-child,
@@ -32,14 +32,14 @@ h4 {
     font-size:26px;
     line-height:1.6;
     font-weight:600;
-    color:var(--h-color);
+    color:var(--fct-hover);
 }
 h5 {
     margin:23px 0 19px;
     font-size:22px;
     line-height:1.6;
     font-weight:600;
-    color:var(--str-color);
+    color:var(--fct-plain);
 }
 h6 {
     margin:23px 0 17px;
@@ -47,7 +47,7 @@ h6 {
     line-height:1.6;
     font-weight:600;
     text-transform:uppercase;
-    color:var(--str-color);
+    color:var(--fct-plain);
 }
 
 ul, ol {
@@ -67,7 +67,7 @@ li {
 
 a {
     text-decoration:underline;
-    color:var(--a-color);
+    color:var(--fct-link);
 }
 a:hover {
     opacity:0.9;
@@ -162,15 +162,15 @@ body.admin-bar .nav-top {
     font-weight:600;
     text-transform:uppercase;
     text-decoration:none;
-    color:var(--a-color);
-    border:2px solid var(--a-color);
+    color:var(--fct-link);
+    border:2px solid var(--fct-link);
     border-radius:22px;
 }
 
 
 /* footer */
 .site-footer {
-    border-top:1px solid var(--a-color);
+    border-top:1px solid var(--fct-link);
 }
 .site-footer ul {
     padding-left:0;
@@ -182,7 +182,7 @@ body.admin-bar .nav-top {
 }
 .site-footer a {
     text-decoration:none;
-    color:var(--h-color);
+    color:var(--fct-hover);
 }
 .site-footer h4 {
     padding-top:19px;

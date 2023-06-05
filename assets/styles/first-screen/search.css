@@ -1,13 +1,3 @@
-:root {
-    --blog-main-color: #0b4562;
-    --h-color: var(--blog-main-color);
-    --a-color: var(--blog-main-color);
-}
-
-body::before {
-    background: var(--blog-main-color);
-}
-
 h1,
 nav {
     width: 100%;
@@ -25,7 +15,7 @@ nav {
     }
 }
 
-article {
+.entry-content {
     display: flex;
     gap: 30px;
     width: 100%;
@@ -33,7 +23,7 @@ article {
     margin-bottom: 70px;
 }
 
-article.status-private {
+.entry-content.status-private {
     opacity: 0.7;
     filter: saturate(50%);
 }
@@ -72,25 +62,25 @@ article.status-private {
     margin-bottom: 20px;
 }
 
-article h2 {
+.entry-content h2 {
     margin: 0 0 10px;
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 0.5px;
-    color: var(--a-color);
+    color: var(--fct-link);
 }
 
-article h2>a {
+.entry-content h2>a {
     display: block;
     text-decoration: none;
-    color: var(--a-color);
+    color: var(--fct-link);
 }
 
 .entry-excerpt,
 .entry-excerpt * {
     margin: 0;
     font-weight: 400;
-    color: var(--blog-main-color);
+    color: var(--fct-plain);
 }
 
 .entry-excerpt {
@@ -104,5 +94,5 @@ article h2>a {
 .entry-meta,
 .entry-meta * {
     font-weight: 400;
-    color: #5c6569;
+    color: var(--fct-plain);;
 }

@@ -7,7 +7,7 @@ if ( have_posts() ) :
         the_post();
 ?>
 
-	<article class="post-<?php the_ID() ?> <?php echo get_post_type() ?> type-<?php echo get_post_type() ?> status-publish entry" itemscope="" itemtype="https://schema.org/CreativeWork">
+	<article class="post-<?php the_ID() ?> <?php echo get_post_type() ?> type-<?php echo get_post_type() ?> status-<?php echo get_post_status() ?> entry" itemscope="" itemtype="https://schema.org/CreativeWork">
 		<div class="post-content" itemprop="text">
             <?php if ( !get_post_meta( get_the_ID(), FCT_SET['pref'].'hide-h1', true ) ) { ?>
             <header class="entry-header gutenberg-container">
@@ -20,7 +20,7 @@ if ( have_posts() ) :
 		</div>
 	</article>
 
-<?php comments_template() ?>
+    <?php comments_template() ?>
 
 <?php
 

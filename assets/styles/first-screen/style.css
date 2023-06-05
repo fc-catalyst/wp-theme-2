@@ -1,12 +1,6 @@
 /* first screen css to print in head */
 
 /* inits */
-:root {
-    --str-color: #2C3538;
-    --h-color: #2C3538;
-    --a-color: #0087A0;
-}
-
 * {
     font-weight: 300;
 }
@@ -30,7 +24,7 @@ h1 {
     line-height: 1.5;
     font-weight: 700;
     letter-spacing: 2px;
-    color: var(--h-color);
+    color: var(--fct-hover);
 }
 
 h1>strong {
@@ -44,7 +38,7 @@ h2 {
     line-height: 1.45;
     font-weight: 700;
     letter-spacing: 2px;
-    color: var(--h-color);
+    color: var(--fct-hover);
 }
 
 h3 {
@@ -52,7 +46,7 @@ h3 {
     font-size: 24px;
     line-height: 1.5;
     font-weight: 600;
-    color: var(--h-color);
+    color: var(--fct-hover);
 }
 
 p {
@@ -400,14 +394,12 @@ body:not(.home) .nav-top li.current-menu-item>a {
 
 
 /* gutenberg & layout sizes */
-.common-container,
 .gutenberg-container {
     --content-max-width: 100%;
 }
 
 @media (min-width:768px) {
 
-    .common-container,
     .gutenberg-container {
         --content-max-width: 640px;
     }
@@ -415,7 +407,6 @@ body:not(.home) .nav-top li.current-menu-item>a {
 
 @media (min-width:992px) {
 
-    .common-container,
     .gutenberg-container>* {
         --content-max-width: 860px;
     }
@@ -423,7 +414,6 @@ body:not(.home) .nav-top li.current-menu-item>a {
 
 @media (min-width:1200px) {
 
-    .common-container,
     .gutenberg-container>* {
         --content-max-width: 1100px;
     }
@@ -431,13 +421,11 @@ body:not(.home) .nav-top li.current-menu-item>a {
 
 @media (min-width:1400px) {
 
-    .common-container,
     .gutenberg-container>* {
         --content-max-width: 1250px;
     }
 }
 
-.common-container,
 .gutenberg-container>* {
     width: 100%;
     max-width: var(--content-max-width);
@@ -525,6 +513,26 @@ body .gutenberg-container .wp-block-image {
 .wp-block-search__button {
     font-size: inherit;
     font-weight: inherit;
+}
+
+/* gutenberg sidebar */
+.gutenberg-sidebar>* {
+    width: 100%;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+}
+.gutenberg-sidebar>*:first-child {
+    margin-top: 0 !important;
+}
+.gutenberg-sidebar>*:last-child {
+    margin-bottom: 0 !important;
+}
+body .gutenberg-sidebar .wp-block-image {
+    margin-top: 0;
+    margin-bottom: 16px;
 }
 
 /* gutenberg image as background */

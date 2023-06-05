@@ -22,7 +22,7 @@
     font-size:24px;
     font-weight:700;
     text-transform:uppercase;
-    color:var(--h-color);
+    color:var(--fct-hover);
 }
 .comment-author img {
     border-radius:50%;
@@ -40,7 +40,7 @@
     flex:1;
     height:2px;
     margin-left:10px;
-    background-color:var(--h-color);
+    background-color:var(--fct-hover);
 }
 
 .comments-area .comment-meta,
@@ -68,7 +68,7 @@
 .comments-area .comment .comment {
     margin:30px 0 0 40px;
     padding-left:25px;
-    border-left:2px solid var(--h-color);
+    border-left:2px solid var(--fct-hover);
     opacity:0.8;
     transition:opacity .1s ease-out;
 }

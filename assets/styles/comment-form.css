@@ -25,7 +25,7 @@
 .comment-form input[type=text],
 .comment-form textarea {
     width:100%;
-    border:2px solid var(--h-color);
+    border:2px solid var(--fct-hover);
     padding:10px 13px;
     box-sizing:border-box;
     -webkit-appearance:none;
@@ -40,7 +40,7 @@
     padding:12px 45px;
     box-sizing:border-box;
     -webkit-appearance:none;
-    background-color:var(--h-color);
+    background-color:var(--fct-hover);
     text-transform:uppercase;
     color:#fff;
     cursor:pointer;
@@ -57,10 +57,10 @@
     display:inline-block;
     width:14px;
     height:14px;
-    border:2px solid var(--h-color);
+    border:2px solid var(--fct-hover);
     margin-right:12px;
     background-color:#fff;
 }
 .comment-form input[type=checkbox]:checked + label::before {
-    background-color:var(--a-color);
+    background-color:var(--fct-link);
 }
