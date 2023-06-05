@@ -169,9 +169,6 @@ body.admin-bar .nav-top {
 
 
 /* footer */
-.site-footer {
-    border-top:1px solid var(--fct-link);
-}
 .site-footer ul {
     padding-left:0;
 }
@@ -180,44 +177,6 @@ body.admin-bar .nav-top {
     margin-bottom:12px;
     padding-left:0;
 }
-.site-footer a {
+.site-footer a:not(:hover) {
     text-decoration:none;
-    color:var(--fct-hover);
-}
-.site-footer h4 {
-    padding-top:19px;
-}
-
-/* Rank Math FAQ CSS */
-#rank-math-faq .rank-math-list-item {
-    margin-bottom: 1em;
-    margin-top: 1em;
-    border-bottom: 1px solid #fff;
-}
-
-.rank-math-question {
-    cursor: pointer;
-    position: relative;
-    display: block;
-    padding-right: 1em;
-    margin-right: 1em;
-    font-weight: 400;
-    margin-top: 30px;
-}
-
-.rank-math-question:after {
-    position: absolute;
-    right: 5px;
-    top: 0;
-    content: "\2715";
-    transform: rotate(-45deg);
-    transition: all 150ms ease-in-out;
-}
-
-.rank-math-question.collapse:after {
-    transform: rotate(0deg);
-}
-
-.rank-math-question:hover {
-    opacity: 0.8;
 }

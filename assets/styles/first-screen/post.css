@@ -1,67 +1,141 @@
 /* layout with columns */
 #main-content {
-    display: flex;
+    display: grid;
+    grid-template-areas:
+        "sidebar-left article sidebar-right";
+    grid-gap: 10px;
     justify-content: center;
+    align-items: stretch;
+    --columns-divider: 1px dotted #c5c5c5;
 }
+#main-content > * {
+    box-sizing: border-box;
+}
+.sidebar-left {
+    grid-area: sidebar-left;
+    width: 330px;
+    border-right: var(--columns-divider);
+}
+article {
+    grid-area: article;
+    max-width: 672px;
+}
+.sidebar-right {
+    grid-area: sidebar-right;
+    width: 315px;
+    border-left: var(--columns-divider);
+}
+
+@media(max-width: 1160px) {
+    #main-content {
+        grid-template-areas:
+            "article sidebar-left"
+            "article sidebar-right"
+            "article .";
+    }
+    .sidebar-left,
+    .sidebar-right {
+        border-right: none;
+        border-left: var(--columns-divider);
+    }
+}
+@media(max-width: 700px) {
+    #main-content {
+        grid-template-areas:
+            "article"
+            "sidebar-left"
+            "sidebar-right";
+    }
+    #main-content > * {
+        justify-self: center;
+        border: none;
+    }
+}
+
+
+aside {
+    padding-top: 28px;
+}
+.has-meta ~ aside {
+    padding-top: 66px;
+}
+
+aside h2 {
+    font-size: 23px;
+    letter-spacing: 0.5px;
+}
+article h1 + .entry-meta {
+    margin: -15px 0 25px;
+}
+
 
 
 /* gutenberg & content improvements */
 
 /* fix in case of floating images */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     clear: both;
 }
 
 @media (min-width:768px) {
 
     .entry-content .wp-block-image {
-        margin:32px auto!important;
-        text-align:center;
+        margin: 32px auto !important;
+        text-align: center;
     }
 
     .entry-content .wp-block-embed {
-        margin:32px auto!important;
-        padding:0;
+        margin: 32px auto !important;
+        padding: 0;
     }
-    .entry-content > .wp-caption {/* legacy classic editor hotfix */
-        margin:32px auto!important;
-        padding:0;
+
+    .entry-content>.wp-caption {
+        /* legacy classic editor hotfix */
+        margin: 32px auto !important;
+        padding: 0;
     }
-    
+
     .wp-block-image .alignleft,
     .wp-block-image .alignright {
-        position:relative;
-        z-index:3;
-        margin-top:0;
+        position: relative;
+        z-index: 3;
+        margin-top: 0;
     }
+
     .wp-block-image .alignleft {
-        margin-right:50px;
+        margin-right: 50px;
     }
+
     .wp-block-image .alignright {
-        margin-left:50px;
+        margin-left: 50px;
     }
-    
+
     .wp-block-image figcaption {
-        font-weight:400;
+        font-weight: 400;
     }
 
 }
 
-.entry-content ul, .entry-content ul li {
-    list-style-type:none;
+.entry-content ul,
+.entry-content ul li {
+    list-style-type: none;
 }
+
 .entry-content li {
-    padding-left:24px;
-    font-size:16px;
+    padding-left: 24px;
+    font-size: 16px;
 }
+
 .entry-content ul li::before {
-    content:'';
-    display:inline-block;
-    width:8px;
-    height:8px;
-    margin-left:-23px;
-    margin-right:15px;
-    border-radius:50%;
-    font-size:16px;
-    background-color:var(--fct-headline);
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-left: -23px;
+    margin-right: 15px;
+    border-radius: 50%;
+    font-size: 16px;
+    background-color: var(--fct-link);
 }

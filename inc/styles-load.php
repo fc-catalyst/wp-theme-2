@@ -206,7 +206,7 @@ function get_settings_variables() {
         return array_reduce( array_keys( $colors ), function ( $result, $item ) use ( $colors ) {
             $color = $colors[ $item ];
             if ( !is_string( $color ) ) { return $result; }
-            $result .= "\t".'--'.FCT_SET['pref'].sanitize_html_class( $item ).': '.$color."\n";
+            $result .= "\t".'--'.FCT_SET['pref'].sanitize_html_class( $item ).': '.$color.';'."\n";
             return $result;
         }, '' );
     };
