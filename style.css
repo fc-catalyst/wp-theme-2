@@ -137,23 +137,6 @@ body.admin-bar .nav-top {
 }
 
 
-/* hide the next block to open onclick */
-.fct-open-next:not( .active ) + * {
-    max-height:0;
-    margin-top:0;
-    margin-bottom:0;
-    padding-top:0;
-    padding-bottom:0;
-}
-.fct-open-next + * {
-    overflow:hidden;
-    transition:all 0.7s ease;
-}
-.fct-open-next.active + * {
-    max-height:1800px;
-}
-
-
 /* footer */
 .site-footer ul {
     padding-left:0;

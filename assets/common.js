@@ -73,7 +73,7 @@
         
         function menu_events() {
             var $checkbox = $( '#nav-top-toggle' ),
-                $hamburger = $( '#nav-top-toggle + .site-header .hamburger' );
+                $hamburger = $( '#nav-top-toggle + .nav-top .hamburger' );
 
             $checkbox.click( function() {
                 setTimeout( function() {
@@ -91,12 +91,6 @@
                 document.removeEventListener( 'click', menuHide, false );
             }
         }
-        
-        /* toggle element after this one */
-        $( '.fct-open-next' ).click( function(e) {
-            e.preventDefault();
-            $( this ).toggleClass( 'active' );
-        });
 
 
     const nav_top = document.querySelector( '#nav-top' );
