@@ -13,25 +13,23 @@ if ( have_posts() ) :
                 $print_cats[] = '<a href="'.esc_url( get_category_link( $v ) ).'">'.esc_html( $v->name ).'</a>';
             }
         }
-        $print_cats = empty( $print_cats ) ? '' : '<p class="entry-meta">'.implode( '|', $print_cats ).'</p>';
+        $print_cats = empty( $print_cats ) ? '' : '<p class="post-meta">'.implode( '|', $print_cats ).'</p>';
 
 ?>
 
     <article class="post-<?php the_ID() ?> <?php echo get_post_type() ?> type-<?php echo get_post_type() ?> status-<?php echo get_post_status() ?> entry <?php echo $print_cats ? 'has-meta' : '' ?>" itemscope="" itemtype="https://schema.org/Article">
-        <div class="post-content" itemprop="text">
-            <?php if ( !get_post_meta( get_the_ID(), FCT_SET['pref'].'hide-h1', true ) ) { ?>
-            <header class="entry-header gutenberg-container">
-                <h1 class="entry-title" itemprop="headline"><?php the_title() ?></h1>
-                <?php echo $print_cats ?>
-                <div style="height:0px" aria-hidden="true" class="wp-block-spacer"></div>
-            </header>
-            <?php } ?>
-            <div class="entry-content gutenberg-container">
-                <?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'large' ); } ?>
-                <?php the_content() ?>
-                <div style="height:30px" aria-hidden="true" class="wp-block-spacer"></div>
-                <?php get_template_part( 'template-parts/post', 'prevnext' ) ?>
-            </div>
+        <?php if ( !get_post_meta( get_the_ID(), FCT_SET['pref'].'hide-h1', true ) ) { ?>
+        <header class="post-header gutenberg-container">
+            <h1 class="post-title" itemprop="headline"><?php the_title() ?></h1>
+            <?php echo $print_cats ?>
+            <div style="height:0px" aria-hidden="true" class="wp-block-spacer"></div>
+        </header>
+        <?php } ?>
+        <div class="post-content gutenberg-container" itemprop="text">
+            <?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'large' ); } ?>
+            <?php the_content() ?>
+            <div style="height:30px" aria-hidden="true" class="wp-block-spacer"></div>
+            <?php get_template_part( 'template-parts/post', 'prevnext' ) ?>
         </div>
     </article>
 

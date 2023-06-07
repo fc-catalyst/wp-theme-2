@@ -2,8 +2,6 @@
 
 .search-content {
     max-width: 800px;
-    --columns-divider: 1px dotted #c5c5c5;
-    --rows-divider: 1px dotted #c5c5c5;
 }
 
 /* post preview / row */
@@ -20,7 +18,7 @@
     align-items: start;
 
     margin-bottom: 30px;
-    border-bottom: var(--rows-divider);
+    border-bottom: 1px dotted var(--fct-border-separate);
     padding-bottom: 20px;
 }
 .post-preview * {
@@ -30,7 +28,7 @@
 .post-preview .post-thumbnail {
     grid-area: post-thumbnail;
     width: 100%;
-    border: 1px solid #eee;
+    border: 1px solid var(--fct-border-easy);
     padding-bottom: 100%;
     position: relative;
     background-color: var(--fct-background);

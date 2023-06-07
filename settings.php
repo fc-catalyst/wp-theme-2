@@ -17,6 +17,9 @@ define( 'FCT_SET', [
         'hover' => '#22323d',
         'headline' => '#60615f',
         'background' => '#83bff1',
+        'border-easy' => '#eeeeee',
+        'border-divide' => '#dddddd',
+        'border-separate' => '#c5c5c5',
         'bg' => [
             'light' => '#83bff1',
             'medium' => '#78b0de',

@@ -7,7 +7,7 @@ add_action( 'init', function() use ( $block_name ) {
     $print_block = function( $props, $content = null ) {
         $post = get_queried_object();
         $image = fct_image( get_post_thumbnail_id( $post->ID ), [600,600], 1, $post->post_title );
-        return $image ? '<div class="entry-image">' . $image . '</div>' : '';
+        return $image ? '<div class="post-image">' . $image . '</div>' : '';
     };
 
     register_block_type( 'fct-gutenberg/' . $block_name, [

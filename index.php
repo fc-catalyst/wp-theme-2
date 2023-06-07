@@ -8,16 +8,14 @@ if ( have_posts() ) :
 ?>
 
 	<article class="post-<?php the_ID() ?> <?php echo get_post_type() ?> type-<?php echo get_post_type() ?> status-<?php echo get_post_status() ?> entry" itemscope="" itemtype="https://schema.org/CreativeWork">
-		<div class="post-content" itemprop="text">
-            <?php if ( !get_post_meta( get_the_ID(), FCT_SET['pref'].'hide-h1', true ) ) { ?>
-            <header class="entry-header gutenberg-container">
-                <h1 class="entry-title" itemprop="headline"><?php the_title() ?></h1>
-            </header>
-            <?php } ?>
-            <div class="entry-content gutenberg-container">
-                <?php the_content() ?>
-            </div>
-		</div>
+        <?php if ( !get_post_meta( get_the_ID(), FCT_SET['pref'].'hide-h1', true ) ) { ?>
+        <header class="post-header gutenberg-container">
+            <h1 class="post-title" itemprop="headline"><?php the_title() ?></h1>
+        </header>
+        <?php } ?>
+        <div class="post-content gutenberg-container" itemprop="text">
+            <?php the_content() ?>
+        </div>
 	</article>
 
     <?php comments_template() ?>

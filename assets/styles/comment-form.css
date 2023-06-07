@@ -1,7 +1,6 @@
 .comments-area {
     padding-top:50px;
     padding-bottom:50px;
-    background-color:#fafafa;
 }
 
 .comment-respond {
@@ -42,7 +41,7 @@
     -webkit-appearance:none;
     background-color:var(--fct-hover);
     text-transform:uppercase;
-    color:#fff;
+    color:white;
     cursor:pointer;
 }
 
@@ -59,7 +58,7 @@
     height:14px;
     border:2px solid var(--fct-hover);
     margin-right:12px;
-    background-color:#fff;
+    background-color:white;
 }
 .comment-form input[type=checkbox]:checked + label::before {
     background-color:var(--fct-link);

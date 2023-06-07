@@ -34,7 +34,7 @@
     width: 100%;
     height: 250px;
     margin-bottom: 20px;
-    border: 1px solid #eee;
+    border: 1px solid var(--fct-border-easy);
     box-sizing: border-box;
     background-color: var(--fct-background);
 }
@@ -78,7 +78,7 @@
 }
 .post-preview .post-category a {
     display: inline-block;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--fct-border-divide);
     padding: 8px 12px 6px;
     background-color: white;
     color: var(--fct-hover);

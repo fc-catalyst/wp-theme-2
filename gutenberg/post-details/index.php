@@ -19,12 +19,12 @@ add_action( 'init', function() use ( $block_name ) {
         ob_start();
 
         ?>
-<div class="entry-details">
-    <span class="entry-date" itemprop="datePublished" content="<?php echo get_the_date( 'Y-m-d', $post ) ?>">
+<div class="post-details">
+    <span class="post-date" itemprop="datePublished" content="<?php echo get_the_date( 'Y-m-d', $post ) ?>">
         <?php echo get_the_date( '', $post ) ?>
     </span>
-    <?php echo $print_cats[0] ? ' | <span class="entry-categories">'.implode(', ',$print_cats).'</span>' : '' ?>
-    <div class="entry-author">
+    <?php echo $print_cats[0] ? ' | <span class="post-categories">'.implode(', ',$print_cats).'</span>' : '' ?>
+    <div class="post-author">
         <?php printf( __( 'by %s', 'fct' ), get_the_author_meta( 'display_name', $post->post_author ) ) ?>
     </div>
 </div>

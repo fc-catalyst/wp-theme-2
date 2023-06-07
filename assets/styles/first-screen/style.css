@@ -73,8 +73,8 @@ p {
 
 .screen-reader-shortcut,
 .screen-reader-text {
-    background-color: #fff;
-    color: #000;
+    background-color: white;
+    color: black;
     border: 0;
     clip: rect(1px, 1px, 1px, 1px);
     font-family: sans-serif;
@@ -86,7 +86,7 @@ p {
 }
 
 
-/* top bar */
+/* top bar ++move to settings */
 :root {
     --nav-top-background: #ffffff;
     --nav-top-color: #60615f;
