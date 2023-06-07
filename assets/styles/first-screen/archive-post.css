@@ -3,10 +3,10 @@
 .blog-content {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .blog-content > * {
-    width: 100%;
+    width: calc( 100% - 40px );
 }
 .blog-content > article {
     width: calc(33.333% - 40px);
@@ -34,6 +34,8 @@
     width: 100%;
     height: 250px;
     margin-bottom: 20px;
+    border: 1px solid #eee;
+    box-sizing: border-box;
     background-color: var(--fct-background);
 }
 .post-preview .post-thumbnail img {
