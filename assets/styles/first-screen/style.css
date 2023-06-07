@@ -110,6 +110,7 @@ p {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
+    position: relative;
 }
 
 .nav-top li {
@@ -183,6 +184,10 @@ body.home .nav-top:not(.stuck) span.custom-logo-link {
         pointer-events: auto;
         transition: opacity 0.5s ease, transform 0.4s ease-out, z-index 0.4s linear;
     }
+
+    .nav-top ul a {
+        padding: 10px 16px;
+    }
 }
 
     /* mobile */
@@ -216,9 +221,10 @@ body.home .nav-top:not(.stuck) span.custom-logo-link {
         display: block;
         width: 100%;
         max-width: 420px;
-        margin-left: -32px;
+        max-height: 80vh;
+        overflow-Y: auto;
         position: absolute;
-        left: auto;
+        right: 0;
         top: 100%;
         background: var(--nav-top-background);
         box-shadow: 0px 4px 4px var(--common-shadow);
@@ -229,7 +235,11 @@ body.home .nav-top:not(.stuck) span.custom-logo-link {
         padding: 0 0 0 20px;
     }
     .nav-top ul:not(.sub-menu) {
-        padding: 25px;
+        padding: 5px;
+    }
+
+    .nav-top ul a {
+        padding: 6px 10px;
     }
 
     /* transitions */
@@ -254,7 +264,6 @@ body.home .nav-top:not(.stuck) span.custom-logo-link {
 /* menu links styling */
 .nav-top ul a {
     display: block;
-    padding: 10px 16px;
     font-size: 14px;
     text-transform: uppercase;
     color: var(--nav-top-color);
