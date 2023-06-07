@@ -30,6 +30,7 @@
 .post-preview .post-thumbnail {
     grid-area: post-thumbnail;
     width: 100%;
+    border: 1px solid #eee;
     padding-bottom: 100%;
     position: relative;
     background-color: var(--fct-background);
