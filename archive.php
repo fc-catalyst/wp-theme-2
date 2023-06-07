@@ -2,44 +2,29 @@
 
 get_header();
 
+$pre = __( get_the_title( get_option( 'page_for_posts', true ) ), 'fct' );
+$title = __( single_cat_title( '', false ), 'fct' );
+$title = $pre ? '<small>' . $pre .':</small> ' . $title : $title;
 
-$the_query = new WP_Query( [
-    'post_type'        => 'fct-section',
-    'name'        => 'category-hero'
-]);
+?>
+    <div class="gutenberg-container">
+        <div class="blog-content">
+            <header><!-- ++replace with the gutenberg header -->
+                <h1><?php echo $title ?></h1>
+            </header>
+            <?php
+            if ( have_posts() ) :
+                while ( have_posts() ) :
+                    the_post();
 
-if ( $the_query->have_posts() ) {
-    ?><style>body::before{content:none}</style><?php
-    while ( $the_query->have_posts() ) {
-        $the_query->the_post();
-?>		
-        <div class="entry-content">
-            <?php the_content() ?>
+                    get_template_part( 'template-parts/post', 'tile' );
+
+                endwhile;
+                get_template_part( 'template-parts/pagination' );
+            endif;
+            ?>
         </div>
-<?php
-    }
-    wp_reset_postdata();
-}
-?>
-
-    <div style="height:90px" aria-hidden="true" class="wp-block-spacer"></div>
-
-    <div class="wrap-width">
-<?php
-
-if ( have_posts() ) :
-    while ( have_posts() ) :
-        the_post();
-
-        get_template_part( 'template-parts/post', 'tile' );
-
-    endwhile;
-    get_template_part( 'template-parts/pagination' );
-endif;
-
-?>
     </div>
-    <div style="height:80px" aria-hidden="true" class="wp-block-spacer"></div>
 <?php
 
 get_footer();

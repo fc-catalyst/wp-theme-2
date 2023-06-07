@@ -2,6 +2,7 @@
 
 $cat = get_the_category( get_the_ID() )[0];
 $cat = $cat ? '<a href="'.esc_url( get_category_link( $cat ) ).'">'.esc_html( $cat->name ).'</a>' : '';
+// ++ maybe improve the layout from search-row.php and use everywhere, just specify styling by grid
 
 ?>
 <article class="post-<?php the_ID() ?> <?php echo get_post_type() ?> type-<?php echo get_post_type() ?> status-<?php echo get_post_status() ?> post-preview post" itemscope="" itemtype="https://schema.org/Article">
