@@ -1,1 +1,10 @@
 /* front page styling */
+
+.site-header {
+    box-shadow: 0px 3px 4px var(--common-shadow);
+}
+
+/* ads polishing */
+.schla-adlabel + div img {
+    max-width: 100%;
+}

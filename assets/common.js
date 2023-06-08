@@ -64,7 +64,7 @@
         
         function scroll_offset() {
             var offset = 0,
-                $heightObject = $( '.site-header' );
+                $heightObject = $( '#nav-top' );
             if ( $heightObject.length ) {
                 offset = $heightObject.height();
             }

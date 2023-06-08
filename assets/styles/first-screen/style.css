@@ -93,7 +93,7 @@ p {
     --nav-top-hover-bg: #fafafa;
     --nav-top-current-bg: #dceaf6;
     --hamburger: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cg%0Afill='none' stroke='black' stroke-width='1.5' stroke-linecap='square'%3E%3Cpath d='M 1.5,3.5 H 14.5'%0A/%3E%3Cpath d='M 1.5,8 H 14.5'%0A/%3E%3Cpath d='M 1.5,12.5 H 14.5'%0A/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
-    --common-shadow: #00000040;
+    --common-shadow: #00000012;
 }
 
 .nav-top {
@@ -133,7 +133,7 @@ span.custom-logo-link {
     transition: opacity .3s ease-out, filter .3s ease-out;
 }
 body.home .nav-top:not(.stuck) span.custom-logo-link {
-    opacity: 0.6;
+    opacity: 0;
     filter: saturate(0);
 }
 
