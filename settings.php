@@ -45,6 +45,7 @@ define( 'FCT_SET', [
         'footer' => 'Footer',
         'aside-left' => 'Left Sidebar',
         'aside-right' => 'Right Sidebar',
+        'aside-bottom' => 'Bottom Sidebar',
     ],
     
 ]);
