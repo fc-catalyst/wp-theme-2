@@ -165,13 +165,14 @@ body.admin-bar .nav-top {
 .pagination li {
     list-style: none;
     margin: 0;
-    padding: 1px;
+    padding: 2px;
 }
 .pagination ul li::before {
     content: none;
 }
 .pagination li a {
-    border: 1px solid var(--fct-link);
+    border: 1px solid var(--fct-background);
+    border-radius: 4px;
     padding: 6px 12px;
     color: var(--fct-link);
     text-decoration: none;

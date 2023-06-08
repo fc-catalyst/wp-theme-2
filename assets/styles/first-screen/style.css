@@ -522,6 +522,7 @@ body .gutenberg-container .wp-block-image {
 .wp-block-search__button {
     font-size: inherit;
     font-weight: inherit;
+    border-radius: 4px;
 }
 
 /* gutenberg sidebar */
