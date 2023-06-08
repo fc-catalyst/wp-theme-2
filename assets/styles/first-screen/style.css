@@ -606,11 +606,6 @@ body .gutenberg-sidebar .wp-block-image {
     }
 }
 
-/* footer crutch */
-.site-footer h2 + .wp-block-spacer {
-    display: none;
-}
-
 /* breadcrumbs, crutch */
 .yoast-breadcrumbs,
 .rank-math-breadcrumb {

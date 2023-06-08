@@ -8,3 +8,8 @@
 .schla-adlabel + div img {
     max-width: 100%;
 }
+
+/* footer crutch */
+.site-footer h2 + .wp-block-spacer {
+    display: none;
+}
