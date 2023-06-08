@@ -2,7 +2,7 @@
 
 /* inits */
 * {
-    font-weight: 300;
+    font-weight: 400;
 }
 * > * {
     font-weight: inherit;
@@ -557,6 +557,58 @@ body .gutenberg-sidebar .wp-block-image {
     height: 100%;
     object-fit: cover;
     object-position: center center;
+}
+
+/* turns the columns into tiles */
+.fct-col-to-tile {
+    --tiles-gap: 50px;
+}
+@media (max-width: 1399px) {
+    .fct-col-to-tile {
+        --tiles-gap: 40px;
+    }
+}
+@media (max-width: 1199px) {
+    .fct-col-to-tile {
+        --tiles-gap: 30px;
+    }
+}
+.fct-col-to-tile {
+    gap: var(--tiles-gap);
+}
+.fct-col-to-tile .wp-block-column {
+    margin-left: 0;
+    margin-bottom: var(--tiles-gap);
+    border-radius: 8px;
+    padding: calc( var(--tiles-gap) / 3 * 2 ) calc( var(--tiles-gap) / 2 );;
+    box-sizing: border-box;
+    background-color: white;
+    box-shadow: 0px 3px 4px var(--common-shadow);
+}
+.fct-col-to-tile .wp-block-column > *:first-child {
+    margin-top: 0!important;
+}
+.fct-col-to-tile .wp-block-column > *:last-child {
+    margin-bottom: 0!important;
+}
+.fct-col-to-tile .wp-block-column img {
+    border: 1px solid var(--fct-border-easy);
+    box-sizing: border-box;
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    object-position: center top;
+    background-color: var(--fct-background);
+}
+@media (max-width: 781px) {
+    .fct-col-to-tile .wp-block-column img {
+        height: auto;
+    }
+}
+
+/* footer crutch */
+.site-footer h2 + .wp-block-spacer {
+    display: none;
 }
 
 /* breadcrumbs, crutch */
