@@ -619,3 +619,48 @@ body .gutenberg-sidebar .wp-block-image {
     font-weight: 400;
     text-decoration: none;
 }
+
+/* ymyl author verified top badge */
+.vv-author-verified {
+	display:block;
+	margin:0 0 36px;
+	padding:0 0 30px;
+	box-sizing:border-box;
+	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='40' height='41' version='1.1' viewBox='0 0 10.583333 10.847917' xmlns='http://www.w3.org/2000/svg' xmlns:cc='http://creativecommons.org/ns%23' xmlns:dc='http://purl.org/dc/elements/1.1/' xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns%23'%3E%3Cmetadata%3E%3Crdf:RDF%3E%3Ccc:Work rdf:about=''%3E%3Cdc:format%3Eimage/svg+xml%3C/dc:format%3E%3Cdc:type rdf:resource='http://purl.org/dc/dcmitype/StillImage'/%3E%3Cdc:title/%3E%3C/cc:Work%3E%3C/rdf:RDF%3E%3C/metadata%3E%3Cg transform='translate(0 -286.15)'%3E%3Cpath d='m8.1637 296.35-1.9459-0.3159-1.7205 0.96237-1.2875-1.4928-1.9366-0.36866-0.026785-1.9712-1.2465-1.5272l1.2465-1.5272 0.026785-1.9711 1.9366-0.36867 1.2875-1.4928 1.7205 0.96238 1.9459-0.31591 0.69934 1.8431 1.6937 1.0088-0.649 1.8614 0.649 1.8614-1.6937 1.0088z' fill='%2378b0de' style='paint-order:normal'/%3E%3Cpath d='m2.6505 292.27 0.69919-0.91671 1.5803 1.2706 2.8479-3.275 0.8701 0.80795-3.5225 4.1137z' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E%0A");
+	background-position:25px 20px;
+	background-repeat:no-repeat;
+	background-size:41px 40px;
+	border-bottom:1px dotted var(--fct-border-separate);
+}
+.vv-author-verified.vv-ymyl-post {
+	margin-top:15px;
+	padding-top:30px;
+	border-top:1px dotted var(--fct-border-separate);
+	background-position:25px 60px;
+}
+.vv-verified-content {
+	display:block;
+	margin:0 0 0 95px;
+	padding:0;
+	box-sizing:border-box;
+    font-size: 13px;
+}
+.vv-verified-content > p:last-child {
+	margin-bottom:0;
+    font-size: 13px;
+}
+.vv-verified-title {
+	display:block;
+	margin-bottom:10px;
+	font-weight:bold;
+}
+
+@media (max-width:600px){
+	.vv-author-verified {
+		background:none;
+	}
+	.vv-verified-content {
+		margin-left:0;
+		text-align:center;
+	}
+}
