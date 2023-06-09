@@ -1,5 +1,9 @@
 /* blog layout */
 
+#main-content {
+    margin-bottom: 60px;
+}
+
 .blog-content {
     --tiles-gap: 50px;
 }
