@@ -12,7 +12,7 @@
 
         /* the functions for the events above */
         function anchor_links() {
-            var $anchors = $( 'a[href^="#"]:not([href="#"])' );
+            var $anchors = $( 'a[href^="#"]:not([href="#"]), .home a[href^="/#"]' );
             if ( !$anchors.length ) {
                 return;
             }
@@ -20,7 +20,7 @@
                 $( 'head' ).append( '<style>html{scroll-behavior:auto!important;}</style>' );
             });
             $anchors.click( function(e) {
-                var anchor = $( this ).attr( 'href' ),
+                var anchor = $( this ).attr( 'href' ).replace( /^\/{1}/, '' ),
                     $target = $( anchor );
                 if ( $target.length ) {
                     e.preventDefault();
