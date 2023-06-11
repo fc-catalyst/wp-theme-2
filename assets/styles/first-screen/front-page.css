@@ -5,7 +5,7 @@
 }
 
 /* ads polishing */
-.schla-adlabel + div img {
+.schla-adlabel ~ * img {
     max-width: 100%;
 }
 

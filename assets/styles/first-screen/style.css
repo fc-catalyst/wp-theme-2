@@ -664,3 +664,10 @@ body .gutenberg-sidebar .wp-block-image {
 		text-align:center;
 	}
 }
+
+/* crutches */
+.schla-adlabel ~ * {
+    display: block;
+    width: fit-content;
+    margin-bottom: 15px;
+}
