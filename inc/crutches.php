@@ -66,6 +66,76 @@ add_shortcode( 'rank_math_breadcrumb--global', function() {
     return $content;
 });
 
+// Advanced Ads async to rotate on cached pages
+add_shortcode( 'the_ad_group-async', function($atts) {
+	static $ind = 0;
+	$ind++;
+
+	$atts = shortcode_atts([
+		'id' => 0,
+	], $atts );
+
+	$unique = md5( $ind );
+
+	ob_start();
+	?>
+
+	<div id="advanced-ads-async-<?php echo $unique ?>"></div>
+	<script>
+		!function(){let a=setInterval(function(){let b=document.readyState;if(b!=='complete'&&b!=='interactive'||typeof jQuery==='undefined'){return}let $=jQuery;clearInterval(a);a=null;
+			let t = '<?php echo esc_attr( $atts['id'] ) ?>';
+			//const d = new Date(); // avoid any caching
+			//t = + d + d.getMilliseconds();
+			$.get( '/wp-json/advanced-ads/v1/group/' + t, function( data ) {
+				$( '#advanced-ads-async-<?php echo $unique ?>' ).replaceWith( data );
+			});
+		}, 300 )}();
+	</script>
+
+	<?php
+    $content = ob_get_contents();
+    ob_end_clean();
+    return $content;
+});
+
+add_action( 'rest_api_init', function () {
+
+	$args = [
+		'methods'  => 'GET',
+		'callback' => function( WP_REST_Request $request ) {
+			
+			if ( !defined( 'ADVADS_BASE_PATH' ) ) { return new \WP_REST_Response( '', 200 ); }
+
+			$result = do_shortcode( '[the_ad_group id="'.$request['id'].'"]' );
+
+			$result = new \WP_REST_Response( $result, 200 );
+
+			nocache_headers();
+
+			return $result;
+		},
+		'permission_callback' => function() { // just a debugging rake
+			if ( empty( $_SERVER['HTTP_REFERER'] ) ) { return false; }
+			if ( strtolower( parse_url( $_SERVER['HTTP_REFERER'], PHP_URL_HOST ) ) !== strtolower( $_SERVER['HTTP_HOST'] ) ) { return false; }
+			return true;
+		},
+		'args' => [
+			'id' => [
+				'description' => 'The search query',
+				'type'        => 'integer',
+				'validate_callback' => function($param) {
+					return is_numeric( $param ) ? true : false;
+				},
+				'sanitize_settings' => function($param, $request, $key) {
+					return sanitize_text_field( intval( $param ) );
+				},
+			],
+		],
+	];
+
+	register_rest_route( 'advanced-ads/v1', '/group/(?P<id>[\d]{1,16})', $args );
+});
+
 // lucky toc return $this->make($attrs, true); is commented in shortcode
 
 /*
