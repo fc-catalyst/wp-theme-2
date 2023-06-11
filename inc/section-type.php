@@ -83,11 +83,12 @@ function get_section($category, $start = '', $end = '') {
 	static $default_categories = [], $details = [];
 
     // add start & end
-    $format = function($content) use ($start, $end) {
-        return $start . $content . $end;
+    $format = function($details) use ($start, $end) {
+		$details['content'] = $start . $details['content'] . $end;
+		return $details;
     };
     // return structure empty value
-    $empty = (object) [ 'content' => '', 'menu_below' => false ];
+    $empty = (object) [ 'content' => '', 'menu_below' => false, 'empty' => true ];
 
     // save the default categories
 	if ( empty( $default_categories ) ) {
@@ -103,7 +104,7 @@ function get_section($category, $start = '', $end = '') {
 
     // get saved content
     if ( isset( $details[ $category ] ) ) {
-        return (object) array_merge( $details[ $category ], [ $format( $return['content'] ) ] );
+        return (object) $format( $details[ $category ] );
     }
 
     // proceed if no saved data
@@ -133,12 +134,31 @@ function get_section($category, $start = '', $end = '') {
 		$collect .= apply_filters( 'the_content', $p->post_content );
 	}
 
-    return (object) [
-        'content' => $format( $collect ),
+	// save in static
+	$details[ $category ] = [
+        'content' => $collect,
         'menu_below' => $menu_below ?? false,
+		'empty' => false,
     ];
+
+    return (object) $format( $details[ $category ] );
 }
 
 function print_section($category, $start = '', $end = '') {
 	echo get_section($category, $start, $end)->content;
 }
+
+
+// add class-names for printing sidebars in post
+add_filter( 'body_class', function($classes) {
+	if ( !is_single() ) { return $classes; }
+
+	if ( get_section( 'aside-left' )->empty ) {
+		$classes[] = 'fct-no-aside-left';
+	}
+	if ( get_section( 'aside-right' )->empty ) {
+		$classes[] = 'fct-no-aside-right';
+	}
+
+    return $classes;
+});

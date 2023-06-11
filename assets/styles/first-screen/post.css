@@ -39,7 +39,7 @@ article {
         border-left: var(--columns-divider);
     }
 }
-@media(max-width: 700px) {
+@media(max-width: 800px) {
     #main-content {
         grid-template-areas:
             "article"
@@ -68,6 +68,38 @@ article h1 + .post-meta {
     margin: -15px 0 25px;
 }
 
+
+/* if no sidebars behavior */
+.fct-no-aside-left #main-content {
+    grid-template-areas:
+        "article sidebar-right";
+}
+.fct-no-aside-right #main-content {
+    grid-template-areas:
+        "sidebar-left article";
+}
+.fct-no-aside-left.fct-no-aside-right #main-content {
+    grid-template-areas:
+        "article";
+}
+
+@media(max-width: 800px) {
+    .fct-no-aside-left #main-content {
+        grid-template-areas:
+            "article"
+            "sidebar-right";
+    }
+    .fct-no-aside-right #main-content {
+        grid-template-areas:
+            "article"
+            "sidebar-left";
+    }
+}
+
+.fct-no-aside-left #main-content article,
+.fct-no-aside-right #main-content article {
+    max-width: 760px;
+}
 
 
 /* gutenberg & content improvements */
