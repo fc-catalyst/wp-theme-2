@@ -144,3 +144,14 @@ h3 {
 aside .schla-adlabel {
     display: none;
 }
+
+/* toc */
+.lwptoc_i {
+    padding: 0;
+}
+.lwptoc_i a {
+    font-size: 14px;
+}
+.lwptoc_i a:not(:hover) {
+    text-decoration: none
+}

@@ -66,6 +66,8 @@ add_shortcode( 'rank_math_breadcrumb--global', function() {
     return $content;
 });
 
+// lucky toc return $this->make($attrs, true); is commented in shortcode
+
 /*
  * Convert Rank Math FAQ Block Into Accordion - Option 2
  * https://rankmath.com/kb/turn-faq-block-into-accordion/
