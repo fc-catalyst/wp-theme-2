@@ -70,6 +70,7 @@ add_shortcode( 'rank_math_breadcrumb--global', function() {
  * Convert Rank Math FAQ Block Into Accordion - Option 2
  * https://rankmath.com/kb/turn-faq-block-into-accordion/
  */
+/*
 add_action('wp_footer', function () { // ++make conditional, take idea from Voslamber
 	?>
 <script>
@@ -108,3 +109,4 @@ rankMath.accordion();
 </script>
 <?php
 });
+//*/

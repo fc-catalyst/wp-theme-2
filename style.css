@@ -126,6 +126,10 @@ body.admin-bar .nav-top {
     font-weight:600;
 }
 
+/* iframes */
+.wp-block-embed iframe {
+    width: 100%;
+}
 
 /* float images mobile */
 @media (max-width:650px) {
