@@ -41,6 +41,15 @@ function posts_meta_settings() {
             'comment' => 'It is recommended to enable this option only if there is another H1 somewhere else on the page.',
         ]);
 
+        if ( get_post_type( $post ) === 'post' ) {
+            checkbox( (object) [
+                'name' => FCT_SET['pref'].'hide-featured-image',
+                'value' => get_post_meta( $post->ID, FCT_SET['pref'].'hide-featured-image' )[0] ?? '0',
+                'label' => 'Hide Featured Image',
+                'comment' => '  ',
+            ]);
+        }
+
         $sections = get_sections();
         foreach( FCT_SET['sections'] as $k => $v ) {
             ?><p><strong><?php echo $v ?></strong></p><p><?php
@@ -69,7 +78,7 @@ add_action( 'save_post', function( $postID ) {
     $post = get_post( $postID );
     if ( $post->post_type === 'revision' ) { return; } // kama has a different solution
 
-    $fields = [ 'hide-h1' ];
+    $fields = [ 'hide-h1', 'hide-featured-image' ];
     foreach( FCT_SET['sections'] as $k => $v ) {
         $fields[] = 'section'.'-'.$k;
     }
@@ -93,6 +102,9 @@ function sanitize_meta( $value, $field, $postID ) {
 
     switch ( $field ) {
         case ( 'hide-h1' ):
+            return $value === '1' ? '1' : null;
+        break;
+        case ( 'hide-featured-image' ):
             return $value === '1' ? '1' : null;
         break;
     }

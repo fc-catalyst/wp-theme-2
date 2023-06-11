@@ -27,7 +27,7 @@ if ( have_posts() ) :
         <?php } ?>
         <?php if ( function_exists('vvab_ymyl_verified_print') ) { vvab_ymyl_verified_print(); } ?>
         <div class="post-content gutenberg-container" itemprop="text">
-            <?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'large' ); } ?>
+            <?php if ( !get_post_meta( get_the_ID(), FCT_SET['pref'].'hide-featured-image', true ) && has_post_thumbnail() ) { the_post_thumbnail( 'large' ); } ?>
             <?php the_content() ?>
             <div style="height:30px" aria-hidden="true" class="wp-block-spacer"></div>
             <?php get_template_part( 'template-parts/post', 'prevnext' ) ?>
