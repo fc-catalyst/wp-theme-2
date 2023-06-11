@@ -640,8 +640,8 @@ body .gutenberg-sidebar .wp-block-image {
 }
 .vv-verified-content {
 	display:block;
-	margin:0 0 0 95px;
-	padding:0;
+	margin:0 0 0 85px;
+	padding:0 10px;
 	box-sizing:border-box;
     font-size: 13px;
 }

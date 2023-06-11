@@ -213,7 +213,7 @@ body.admin-bar .nav-top {
 	display:block;
 	flex-basis:84%;
 	margin:0;
-	padding:20px 0 20px 3.4%;
+	padding:20px 15px 20px 3.4%;
 	border-left:1px dotted var(--fct-border-separate);
 	box-sizing:border-box;
 }
@@ -248,7 +248,7 @@ body.admin-bar .nav-top {
 	}
 	.vv-author-content {
 		width:100%;
-		padding-left:0;
+		padding-left: 15px;
 		border-left:none;
 	}
 	.vv-author-title {
