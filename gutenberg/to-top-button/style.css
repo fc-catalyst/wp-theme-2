@@ -1,0 +1,20 @@
+.to-top-button {
+    --shape: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 160' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='grey' stroke-width='5px' style='transform:translateY(2px)'%3E%3Cpath d='m 303.43661,80.74711 32.97253,-32.939159 32.97253,32.939158'/%3E%3Cpath d='m 303.43661,111.05472 32.97253,-32.939154 32.97253,32.939154'/%3E%3Cpath stroke-width='4px' d='M 161.5268,159.29294 308.11529,12.74466 c 15.67479,-15.6704957 40.91291,-15.6704957 56.5877,-6e-6 L 511.29148,159.29294'/%3E%3C/g%3E%3C/svg%3E%0A");
+    display: block;
+    width: var(--width);
+    height: calc(var(--width) / 2);
+    min-height: 20px;
+    margin: calc(-1 * var(--width) / 2) 0 -2px auto;
+    background-color: var(--bgcolor);
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center bottom;
+    -webkit-mask-position: center bottom;
+    mask-size: 100%;
+    -webkit-mask-size: 100%;
+    mask-type: alpha;
+    -webkit-mask-type: alpha;
+    mask-image: var(--shape);
+    -webkit-mask-image: var(--shape);
+    overflow: hidden;
+}
