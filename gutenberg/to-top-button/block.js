@@ -8,7 +8,7 @@
 	const target = '#document-top';
 
 	const fixWidth = value => {
-		return value + 'px';//value && /^[0-9\.]+$/.test( value ) ? value + 'px' : value;
+		return value && /^[0-9\.]+$/.test( value ) ? value + 'px' : value;
 	};
 
 	wp.blocks.registerBlockType( 'fct-gutenberg/to-top-button', {
@@ -35,7 +35,7 @@
 					className: 'to-top-button',
 					href: props.attributes.target || target,
 					style: {
-						'--width': fixWidth( props.attributes.width ) || width,
+						'--width': fixWidth( props.attributes.width || width ),
 						'--bgcolor': props.attributes.bgcolor || bgcolor
 					}
 				},
