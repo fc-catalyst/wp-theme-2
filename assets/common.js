@@ -1,6 +1,5 @@
 !function(){let a=setInterval(function(){let b=document.readyState;if(b!=='complete'&&b!=='interactive'||typeof jQuery==='undefined'){return}let $=jQuery;clearInterval(a);a=null;
 
-        anchor_links();
         menu_events();
 
         let scrolled = window.scrollY;
@@ -11,25 +10,6 @@
         });
 
         /* the functions for the events above */
-        function anchor_links() {
-            var $anchors = $( 'a[href^="#"]:not([href="#"]), .home a[href^="/#"]' );
-            if ( !$anchors.length ) {
-                return;
-            }
-            setTimeout( function() {
-                $( 'head' ).append( '<style>html{scroll-behavior:auto!important;}</style>' );
-            });
-            $anchors.click( function(e) {
-                var anchor = $( this ).attr( 'href' ).replace( /^\/{1}/, '' ),
-                    $target = $( anchor );
-                if ( $target.length ) {
-                    e.preventDefault();
-                }
-                scroll_to_object( $target );
-                history.pushState( null, null, anchor );
-            });
-        }
-
         function scrolled_monitor() {
             const l = document.body.classList,
                   s = window.scrollY,
@@ -42,33 +22,6 @@
             if ( s < scrolled ) { l.remove( d ) }
             else { l.add( d ) }
             scrolled = s;
-        }
-
-        function scroll_to_object(target) {
-
-            if ( typeof target ==='string' || typeof target === 'object' && !target instanceof $ ) {
-                var $target = $( target );
-            } else {
-                var $target = target;
-            }
-
-            if ( !$target || !$target.length ) {
-                return;
-            }
-
-            var scroll_to = $target.position()['top'] - scroll_offset();
-            $( 'html, body' ).animate( {
-                scrollTop: scroll_to
-            }, 400 );
-        }
-        
-        function scroll_offset() {
-            var offset = 0,
-                $heightObject = $( '#nav-top' );
-            if ( $heightObject.length ) {
-                offset = $heightObject.height();
-            }
-            return offset;
         }
         
         function menu_events() {
