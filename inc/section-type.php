@@ -145,7 +145,12 @@ function get_section($category, $start = '', $end = '') {
 }
 
 function print_section($category, $start = '', $end = '') {
-	echo get_section($category, $start, $end)->content;
+	$content = get_section($category, $start, $end)->content;
+	echo $content; return;
+	if ( $category === 'header' ) {
+		$content = str_replace( 'loading="lazy"', '', $content );
+	}
+	echo $content;
 }
 
 

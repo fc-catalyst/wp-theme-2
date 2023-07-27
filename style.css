@@ -4,7 +4,7 @@ Theme URI:      https://github.com/VVolkov833/wp-theme-2
 Description:    A custom theme with the split CSS and async scripts loading
 Author:         Firmcatalyst, Vadim Volkov
 Author URI:     https://firmcatalyst.com
-Version:        2.0.2
+Version:        2.0.3
 Text Domain:    fct
 Domain Path:    /languages
 Requires at least: 5.0
@@ -198,7 +198,7 @@ body.admin-bar .nav-top {
 	line-height:0;
 	text-align:center;
 }
-.vv-author > span > img {
+.vv-author > span img {
 	width:100%;
 	max-width:130px;
 	height:auto;

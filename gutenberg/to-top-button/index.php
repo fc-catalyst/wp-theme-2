@@ -46,23 +46,25 @@ add_action( 'init', function() use ( $block_name ) {
         FCT_VER
     );
 
-    wp_register_style(
-        'fct-' . $block_name . '-editor',
-        get_template_directory_uri() . '/gutenberg/' . $block_name . '/style.css',
-        ['wp-edit-blocks'],
-        FCT_VER
-    );
+    $style_path = __DIR__ . '/style.css';
+    $style_contents = file_get_contents( $style_path );
+    $name = 'fct-' . $block_name . '-editor';
+
+    wp_register_style( $name, false );
+    wp_enqueue_style( $name );
+    wp_add_inline_style( $name, $style_contents );
+
 });
 
 add_action( 'wp_enqueue_scripts', function() use ( $block_name ) {
 
     //if ( !has_block( 'fct-gutenberg/' . $block_name ) ) { return; }
 
-    wp_enqueue_style(
-        'fct-' . $block_name, // ++!! change to inline?
-        get_template_directory_uri() . '/gutenberg/' . $block_name . '/style.css',
-        [],
-        FCT_VER,
-        'all'
-    );
+    $style_path = __DIR__ . '/style.css';
+    $style_contents = file_get_contents( $style_path );
+    $name = 'fct-' . $block_name . '-editor';
+
+    wp_register_style( $name, false );
+    wp_enqueue_style( $name );
+    wp_add_inline_style( $name, $style_contents );
 });
