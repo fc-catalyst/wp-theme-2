@@ -8,7 +8,7 @@ add_action( 'wp_enqueue_scripts', function() { // using wp_footer reduced the pa
     $enqueue_dir = get_template_directory() . '/assets/styles/';
     $enqueue_url = get_template_directory_uri() . '/assets/styles/';
     $enqueue_files = array_merge( ['fonts'], css_files_get() );
-    $min = FCT_DEV ? '' : '.min';
+    $min = '';//FCT_DEV ? '' : '.min';
 
     foreach ( $enqueue_files as $v ) {
         if ( !is_file( $enqueue_dir . $v . $min . '.css' ) ) { continue; }
