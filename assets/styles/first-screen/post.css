@@ -11,6 +11,9 @@
 #main-content > * {
     box-sizing: border-box;
 }
+#main-content h2 {
+    font-size: 28px;
+}
 .sidebar-left {
     grid-area: sidebar-left;
     width: 330px;

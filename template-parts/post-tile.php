@@ -7,7 +7,7 @@ $cat = $cat ? '<a href="'.esc_url( get_category_link( $cat ) ).'">'.esc_html( $c
 ?>
 <article class="post-<?php the_ID() ?> <?php echo get_post_type() ?> type-<?php echo get_post_type() ?> status-<?php echo get_post_status() ?> post-preview post" itemscope="" itemtype="https://schema.org/Article">
     <a href="<?php the_permalink() ?>" class="post-thumbnail featuredimage">
-        <?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'medium' ); } ?>
+        <?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'large' ); } ?>
     </a>
     <header class="post-header">
         <h2 class="post-title" itemprop="headline">
