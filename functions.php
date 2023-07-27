@@ -39,6 +39,10 @@ add_action( 'after_setup_theme', function () {
 		'header-text' => '',
 		'unlink-homepage-logo' => true,
 	]);
+	add_filter( 'get_custom_logo_image_attributes', function( $custom_logo_attr ) {
+	    $custom_logo_attr['alt'] = 'Startseite';
+    	return $custom_logo_attr;
+	});
 });
 
 // menu & thumbnails
