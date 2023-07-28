@@ -177,6 +177,11 @@ body.admin-bar .nav-top {
     text-decoration: none;
     white-space: nowrap;
 }
+.pagination li.active a {
+    border: none;
+	filter: saturate(0);
+	pointer-events: none;
+}
 
 /* ymyl author bottom box */
 
