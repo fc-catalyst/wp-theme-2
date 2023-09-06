@@ -23,6 +23,7 @@ article {
     grid-area: article;
     max-width: 672px;
     width: 100%;
+    padding-bottom: 5px;
     overflow: hidden;
 }
 .sidebar-right {
