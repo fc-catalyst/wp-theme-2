@@ -92,15 +92,16 @@ add_filter( 'upload_mimes', function ($types) { // ++better install the plugin f
 // disable creating default sizes on upload, solved by inc/image-onthefly.php
 add_action( 'intermediate_image_sizes_advanced', function ($sizes) {
 	unset(
-		$sizes['medium'],
-		//$sizes['large'], // kept for blog posts
+		//$sizes['medium'],
 		$sizes['medium_large'],
+		//$sizes['large'], // kept for blog posts
 		$sizes['1536x1536'],
 		$sizes['2048x2048']
 	);
 	return $sizes;
 });
 // disable displaying medium size in admin
+/*
 add_action( 'admin_enqueue_scripts', function () {
 	$screen = get_current_screen();
 	if ($screen->id !== 'options-media') { return; }
@@ -114,7 +115,7 @@ add_action( 'admin_enqueue_scripts', function () {
 		}	
 	' );
 });
-
+//*/
 
 // disable emoji, just taken from somewhere
 add_action('init', function () {

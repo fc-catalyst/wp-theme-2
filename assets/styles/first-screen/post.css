@@ -22,6 +22,8 @@
 article {
     grid-area: article;
     max-width: 672px;
+    width: 100%;
+    overflow: hidden;
 }
 .sidebar-right {
     grid-area: sidebar-right;

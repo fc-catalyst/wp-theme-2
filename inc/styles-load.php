@@ -124,15 +124,21 @@ function css_files_get() {
     return $files;
 }
 
-function css_minify($text) {
-    $text = preg_replace( '/\/\*(?:.*?)*\*\//', '', $text ); // remove comments
-    $text = preg_replace( '/\s+/', ' ', $text ); // one-line & only single speces
-    $text = preg_replace( '/ ?([\{\};:\>\~\+]) ?/', '$1', $text ); // remove spaces
-    $text = preg_replace( '/\+(\d|var)/', ' + $1', $text ); // restore spaces in functions
-    $text = preg_replace( '/(?:[^\}]*)\{\}/', '', $text ); // remove empty properties
-    $text = str_replace( [';}', '( ', ' )'], ['}', '(', ')'], $text ); // remove last ; and spaces
-    return trim( $text );
-}
+function css_minify($css) {
+    $preg_replace = function($regexp, $replace, $string) { // avoid null result so that css still works even though not fully minified
+        return preg_replace( $regexp, $replace, $string ) ?: $string . '/* --- failed '.$regexp.', '.$replace.' */';
+    };
+    $css = $preg_replace( '/\s+/', ' ', $css ); // one-line & only single speces
+    $css = $preg_replace( '/ ?\/\*(?:.*?)\*\/ ?/', '', $css ); // remove comments
+    $css = $preg_replace( '/ ?([\{\};:\>\~\+]) ?/', '$1', $css ); // remove spaces
+    $css = $preg_replace( '/\+(\d)/', ' + $1', $css ); // restore spaces in functions
+    $css = $preg_replace( '/(?:[^\}]*)\{\}/', '', $css ); // remove empty properties
+    $css = str_replace( [';}', '( ', ' )'], ['}', '(', ')'], $css ); // remove last ; and spaces
+    // ++ should also remove 0 from 0.5, but not from svg-s?
+    // ++ try replacing ', ' with ','
+    // ++ remove space between %3E %3C and before %3E and /%3E
+    return trim( $css );
+};
 
 function defer($name, $priority = 10) {
     static $store = [];
