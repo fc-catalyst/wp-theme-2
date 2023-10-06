@@ -150,6 +150,17 @@ add_action('wp_default_scripts', function ($scripts) {
 // ++ remove wp-blocks as the most of it is loaded on the first screen
 
 
+function js_after_DOM($script, $jQuery_check = false) {
+    return
+        ( $jQuery_check
+            ? "!function(){let a=setInterval(function(){let b=document.readyState;if(b!=='complete'&&b!=='interactive'||typeof jQuery==='undefined'){return}let $=jQuery;clearInterval(a);a=null;"
+            : "!function(){let a=setInterval(function(){let b=document.readyState;if(b!=='complete'&&b!=='interactive'){return}clearInterval(a);a=null;"
+        )
+        .$script
+        ."}, 300 )}();";
+}
+
+
 /* theme details */
 
 // add custom theme styling for admin-side

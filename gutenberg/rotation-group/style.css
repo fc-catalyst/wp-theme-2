@@ -1,0 +1,3 @@
+.fct-rotation-group-inner > *:not(.fct-rotate) {
+    display: none;
+}
