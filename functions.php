@@ -1,6 +1,6 @@
 <?php
 
-define( 'FCT_DEV', true ); // developer mode
+define( 'FCT_DEV', false ); // developer mode
 
 require __DIR__ . ( is_file(__DIR__ . '/settings.php') ? '/settings.php' : '/settings-sample.php' );
 require __DIR__ . '/inc/styles-load.php';

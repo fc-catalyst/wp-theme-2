@@ -41,5 +41,5 @@ add_action( 'wp_enqueue_scripts', function() use ($block_mod_name) {
 
     wp_register_style( $block_mod_name, false );
     wp_enqueue_style( $block_mod_name );
-    wp_add_inline_style( $block_mod_name, FCT_DEV ? $style_contents : css_minify( $style_contents ) );
+    wp_add_inline_style( $block_mod_name, FCT_DEV ? $style_contents : FCT\Styles\css_minify( $style_contents ) );
 });
