@@ -13,7 +13,7 @@ if ( have_posts() ) :
                 $print_cats[] = '<a href="'.esc_url( get_category_link( $v ) ).'">'.esc_html( $v->name ).'</a>';
             }
         }
-        $print_cats = empty( $print_cats ) ? '' : '<p class="post-meta">'.implode( '|', $print_cats ).'</p>';
+        $print_cats = empty( $print_cats ) ? '' : '<p class="post-meta">'.implode( ' | ', $print_cats ).'</p>';
 
 ?>
 

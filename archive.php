@@ -2,9 +2,9 @@
 
 get_header();
 
-$pre = __( get_the_title( get_option( 'page_for_posts', true ) ), 'fct' );
+//$pre = __( get_the_title( get_option( 'page_for_posts', true ) ), 'fct' );
 $title = __( single_cat_title( '', false ), 'fct' );
-$title = $pre ? '<small>' . $pre .':</small> ' . $title : $title;
+//$title = $pre ? '<small>' . $pre .':</small> ' . $title : $title;
 
 ?>
     <div class="gutenberg-container">

@@ -131,7 +131,7 @@ function css_minify($css) {
     $css = $preg_replace( '/\s+/', ' ', $css ); // one-line & only single speces
     $css = $preg_replace( '/ ?\/\*(?:.*?)\*\/ ?/', '', $css ); // remove comments
     $css = $preg_replace( '/ ?([\{\};:\>\~\+]) ?/', '$1', $css ); // remove spaces
-    $css = $preg_replace( '/\+(\d)/', ' + $1', $css ); // restore spaces in functions
+    $css = $preg_replace( '/\+(\d|var)/', ' + $1', $css ); // restore spaces in functions
     $css = $preg_replace( '/(?:[^\}]*)\{\}/', '', $css ); // remove empty properties
     $css = str_replace( [';}', '( ', ' )'], ['}', '(', ')'], $css ); // remove last ; and spaces
     // ++ should also remove 0 from 0.5, but not from svg-s?
